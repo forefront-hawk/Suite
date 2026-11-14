@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-ov="ui-sophisticated">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0" />
+  <title>ForefrontHawk Suite — Flagship 3D Simulation, Aviation, Skydiving &amp; Audio Studio Portal</title>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@500;700;800&family=Orbitron:wght@600;800;900&family=Press+Start+2P&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #060911;
+      --panel: #0e1422;
+      --panel-elev: #141d30;
+      --line: #243048;
+      --text: #f8fafc;
+      --mute: #94a3b8;
+      --accent: #d4af37;
+      --accent-cyan: #00f5d4;
+      --accent-blue: #38bdf8;
+      --accent-green: #10b981;
+      --accent-orange: #f97316;
+      --accent-pink: #f43f5e;
+      --deck-border: #c5a059;
+      --font: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --mono: 'JetBrains Mono', monospace;
+      color-scheme: dark;
+    }
+
+    :root[data-theme="light"] {
+      --bg: #eef2f6;
+      --panel: #ffffff;
+      --panel-elev: #f8fafc;
+      --line: #cbd5e1;
+      --text: #0f172a;
+      --mute: #475569;
+      --deck-border: #94a3b8;
+      color-scheme: light;
+    }
+
+    :root[data-theme="matrix"] {
+      --bg: #020a04;
+      --panel: #041608;
+      --panel-elev: #07220d;
+      --line: #00ff41;
+      --text: #d1fae5;
+      --mute: #34d399;
+      --accent: #00ff41;
+      --deck-border: #00ff41;
+    }
+
+    :root[data-theme="cyberpunk"] {
+      --bg: #0c021f;
+      --panel: #170536;
+      --panel-elev: #240954;
+      --line: #ff007f;
+      --text: #fae8ff;
+      --mute: #e879f9;
+      --accent: #00f0ff;
+      --deck-border: #ff007f;
+    }
+
+    :root[data-theme="oceanic"] {
+      --bg: #03111c;
+      --panel: #072136;
+      --panel-elev: #0b2e4a;
+      --line: #0284c7;
+      --text: #f0f9ff;
+      --mute: #7dd3fc;
+      --accent: #38bdf8;
+      --deck-border: #0ea5e9;
+    }
+
+    :root[data-theme="crimson"] {
+      --bg: #110406;
+      --panel: #1f080c;
+      --panel-elev: #2e0d13;
+      --line: #dc2626;
+      --text: #fef2f2;
+      --mute: #fca5a5;
+      --accent: #f59e0b;
+      --deck-border: #ef4444;
+    }
+
+    * {
+      box-sizing: border-box;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    [hidden] {
+      display: none !important;
+    }
+
+    body {
+      margin: 0;
+      background: radial-gradient(circle at 15% 0%, rgba(0, 245, 212, 0.08), transparent 40%),
+                  radial-gradient(circle at 85% 10%, rgba(212, 175, 55, 0.10), transparent 45%),
+                  var(--bg);
+      color: var(--text);
+      font-family: var(--font);
+      font-size: 13.5px;
+      line-height: 1.45;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .wrap {
+      max-width: 1480px;
+      margin: 0 auto;
+      padding: 12px 16px 40px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    /* === TOP ECOSYSTEM COMMAND BAR === */
+    .top-bar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-top: 2px solid var(--accent);
+      border-radius: 16px;
+      padding: 10px 14px;
+      box-shadow: 0 12px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    .brand-lockup {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .brand-emblem {
+      width: 38px;
+      height: 38px;
+      border-radius: 11px;
+      background: linear-gradient(135deg, var(--accent), #00f5d4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 21px;
+      box-shadow: 0 4px 14px rgba(212, 175, 55, 0.35);
+    }
+
+    .brand-title {
+      font-family: 'Orbitron', var(--font);
+      font-weight: 900;
+      font-size: 16px;
+      letter-spacing: 0.04em;
+    }
+
+    .brand-title span {
+      color: var(--accent);
+    }
+
+    .brand-sub {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--mute);
+      letter-spacing: 0.06em;
+    }
+
+    .nav-seg {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      background: rgba(0, 0, 0, 0.28);
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 4px;
+    }
+
+    .nav-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      text-decoration: none;
+      color: var(--mute);
+      font-weight: 700;
+      font-size: 11.5px;
+      padding: 5px 10px;
+      border-radius: 8px;
+      transition: all 0.14s ease;
+    }
+
+    .nav-pill:hover {
+      color: var(--text);
+      background: rgba(255, 255, 255, 0.07);
+    }
+
+    .nav-pill[aria-current="page"] {
+      background: var(--accent);
+      color: #04121c;
+      font-weight: 900;
+    }
+
+    .nav-pill.dive-highlight {
+      background: linear-gradient(135deg, rgba(0, 245, 212, 0.22), rgba(56, 189, 248, 0.22));
+      border: 1px solid var(--accent-cyan);
+      color: var(--accent-cyan);
+      font-weight: 800;
+    }
+
+    .btn, select, input[type="text"] {
+      font-family: inherit;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      background: var(--panel-elev);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 6px 12px;
+      min-height: 36px;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      transition: all 0.14s ease;
+    }
+
+    .btn:hover {
+      filter: brightness(1.14);
+      border-color: var(--accent);
+    }
+
+    .btn:active {
+      transform: scale(0.97);
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--accent), #f59e0b);
+      color: #050b14;
+      border-color: #fef08a;
+      font-weight: 900;
+    }
+
+    .btn-cyan {
+      background: linear-gradient(135deg, #00f5d4, #0284c7);
+      color: #04121c;
+      border-color: #a7f3d0;
+      font-weight: 900;
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      font-weight: 800;
+      padding: 3px 9px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(0, 0, 0, 0.3);
+      color: var(--mute);
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* === HERO SPOTLIGHT & LIVE INTERACTIVE MINI-SIMULATOR STAGE === */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.08fr 1.22fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    @media (max-width: 1024px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-card {
+      background: linear-gradient(155deg, var(--panel-elev) 0%, var(--panel) 100%);
+      border: 1.5px solid var(--deck-border);
+      border-radius: 20px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 14px;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.5);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .dive-featured-spotlight {
+      background: linear-gradient(135deg, rgba(0, 245, 212, 0.14) 0%, rgba(2, 132, 199, 0.18) 55%, rgba(15, 23, 42, 0.92) 100%);
+      border: 1.5px solid var(--accent-cyan);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      box-shadow: 0 0 28px rgba(0, 245, 212, 0.15);
+    }
+
+    /* Interactive Mini-Sim Canvas Stage */
+    .sim-stage-card {
+      background: #040914;
+      border: 2px solid var(--accent-cyan);
+      border-radius: 20px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 18px 45px rgba(0, 0, 0, 0.65);
+    }
+
+    .sim-stage-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 10px 14px;
+      background: rgba(14, 20, 34, 0.95);
+      border-bottom: 1px solid var(--line);
+      flex-wrap: wrap;
+    }
+
+    .sim-tabs {
+      display: flex;
+      gap: 5px;
+      flex-wrap: wrap;
+    }
+
+    .sim-tab-btn {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 10px;
+      border-radius: 8px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--mute);
+      cursor: pointer;
+    }
+
+    .sim-tab-btn.active {
+      background: var(--accent-cyan);
+      color: #04121c;
+      border-color: #ffffff;
+    }
+
+    .sim-canvas-wrap {
+      position: relative;
+      width: 100%;
+      height: 310px;
+      background: #030710;
+    }
+
+    canvas#suiteMiniSimCanvas {
+      width: 100%;
+      height: 100%;
+      display: block;
+      cursor: pointer;
+      touch-action: none;
+    }
+
+    .sim-stage-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 9px 14px;
+      background: rgba(14, 20, 34, 0.95);
+      border-top: 1px solid var(--line);
+      flex-wrap: wrap;
+      font-size: 11.5px;
+    }
+
+    /* === FILTER BAR & BENTO APPLICATION GRID === */
+    .filter-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+
+    .cat-pills {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cat-pill-btn {
+      font-size: 11.5px;
+      font-weight: 800;
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255, 255, 255, 0.04);
+      color: var(--mute);
+      cursor: pointer;
+    }
+
+    .cat-pill-btn.active {
+      background: var(--accent);
+      color: #050b14;
+      border-color: #fef08a;
+    }
+
+    .apps-bento-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 14px;
+    }
+
+    .app-bento-card {
+      background: linear-gradient(160deg, var(--panel-elev) 0%, var(--panel) 100%);
+      border: 1.5px solid var(--line);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+      position: relative;
+    }
+
+    .app-bento-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 14px 34px rgba(0, 0, 0, 0.5);
+    }
+
+    .app-bento-card.featured-dive {
+      border-color: var(--accent-cyan);
+      box-shadow: 0 0 26px rgba(0, 245, 212, 0.18);
+    }
+
+    .app-card-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .app-icon-box {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      flex-shrink: 0;
+    }
+
+    .app-domain-link {
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 800;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      background: rgba(0, 245, 212, 0.1);
+      border: 1px solid rgba(0, 245, 212, 0.35);
+      padding: 3px 8px;
+      border-radius: 6px;
+    }
+
+    .app-domain-link:hover {
+      background: var(--accent-cyan);
+      color: #04121c;
+    }
+
+    .app-tags-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .app-tag {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.06);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .app-actions-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+
+    /* DNS & Subdomain Table */
+    .dns-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-top: 8px;
+    }
+
+    .dns-table th, .dns-table td {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      text-align: left;
+    }
+
+    .dns-table th {
+      background: rgba(0, 0, 0, 0.35);
+      color: var(--accent);
+      font-family: var(--mono);
+      font-size: 11px;
+      text-transform: uppercase;
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 80;
+      background: linear-gradient(135deg, #0f172a, #1e293b);
+      border: 2px solid var(--accent-cyan);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: 12px;
+      font-weight: 800;
+      font-size: 12.5px;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65);
+      opacity: 0;
+      transform: translateY(12px);
+      pointer-events: none;
+      transition: all 0.2s ease;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+<body>
+  <div id="suiteToast" class="toast">Copied to clipboard!</div>
+
+  <div class="wrap">
+    <!-- === TOP FOREFRONTHAWK ECOSYSTEM HEADER BAR === -->
+    <header class="top-bar">
+      <div style="display:flex; align-items:center; gap:12px; flex-wrap:wrap;">
+        <a href="https://forefronthawk.com" class="brand-lockup">
+          <div class="brand-emblem">🦅</div>
+          <div>
+            <div class="brand-title">FOREFRONT<span>HAWK</span></div>
+            <div class="brand-sub">UNIFIED 3D SIMULATION, AVIATION &amp; STUDIO SUITE</div>
+          </div>
+        </a>
+
+        <nav class="nav-seg" id="suiteNavSeg" aria-label="ForefrontHawk Subdomain Navigation">
+          <a href="https://forefronthawk.com" class="nav-pill" aria-current="page">🏠 HawkSuite</a>
+          <a href="https://dive.forefronthawk.com" class="nav-pill dive-highlight" title="Launch HawkDive 3D Skydiving &amp; Wingsuit Simulator at Dive.Forefronthawk.com">🪂 Dive.Forefronthawk.com</a>
+          <a href="https://hawkx.forefronthawk.com" class="nav-pill">🕹️ HawkX 3D</a>
+          <a href="https://flies.forefronthawk.com" class="nav-pill">🦅 HawkFlies</a>
+          <a href="https://golf.forefronthawk.com" class="nav-pill">⛳ HawkGolf 3D</a>
+          <a href="https://studio.forefronthawk.com" class="nav-pill">🎛️ HawkStudio</a>
+          <a href="https://deck.forefronthawk.com" class="nav-pill">🎚️ HawkDeck</a>
+          <a href="https://calls.forefronthawk.com" class="nav-pill">🎙️ HawkCalls</a>
+          <a href="https://chroma.forefronthawk.com" class="nav-pill">🎹 Chroma</a>
+          <a href="https://shine.forefronthawk.com" class="nav-pill">⚡ HawkShine</a>
+          <a href="https://rgb.forefronthawk.com" class="nav-pill">🎞️ HawkRGB</a>
+          <a href="https://globe.forefronthawk.com" class="nav-pill">🌍 HawkGlobe</a>
+          <a href="https://enigma.forefronthawk.com" class="nav-pill">🌀 HawkEnigma</a>
+        </nav>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+        <span id="liveHexBadge" class="chip" style="border-color:var(--accent); color:var(--accent);">#D4AF37</span>
+        <input type="text" id="hexColorInput" value="#D4AF37" style="width:86px; text-align:center; font-family:var(--mono);" aria-label="Accent Hex Color" />
+        <button type="button" class="btn" id="btnApplyHexColor">🎨 Apply #HEX</button>
+        <button type="button" class="btn" id="btnToggleThemeDrawer">🛠️ UI Customizer</button>
+        <button type="button" class="btn" id="btnToggleDnsDrawer">🌐 Subdomains &amp; DNS</button>
+      </div>
+    </header>
+
+    <!-- === COLLAPSIBLE SHARED UI CUSTOMIZER DRAWER === -->
+    <section id="themeCustomizerDrawer" class="top-bar" hidden>
+      <div style="display:flex; align-items:center; justify-content:space-between; width:100%; flex-wrap:wrap; gap:10px;">
+        <span style="font-family:var(--mono); font-weight:800; font-size:11.5px; color:var(--accent);">
+          ✨ SHARED FOREFRONTHAWK.COM UI ENGINE (Syncs Across All *.forefronthawk.com Subdomains)
+        </span>
+        <div style="display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+          <label style="font-size:12px; font-weight:700;">Theme:
+            <select id="selUiTheme">
+              <option value="dark" selected>Obsidian Gold (Default)</option>
+              <option value="oceanic">Oceanic Deep</option>
+              <option value="cyberpunk">Cyberpunk Neon</option>
+              <option value="matrix">Matrix Code</option>
+              <option value="crimson">Crimson Tactical</option>
+              <option value="light">Studio Daylight</option>
+            </select>
+          </label>
+          <label style="font-size:12px; font-weight:700;">Typography:
+            <select id="selUiFont">
+              <option value="Inter, sans-serif" selected>Inter Sans</option>
+              <option value="'Orbitron', sans-serif">Orbitron Cyber</option>
+              <option value="'Space Grotesk', sans-serif">Space Grotesk</option>
+              <option value="'JetBrains Mono', monospace">JetBrains Mono</option>
+              <option value="'Press Start 2P', monospace">8-Bit Arcade</option>
+            </select>
+          </label>
+          <button type="button" class="btn" id="btnResetThemeDefault">↺ Reset Default Gold</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- === COLLAPSIBLE GODADDY DNS & SUBDOMAIN MATRIX DRAWER === -->
+    <section id="dnsManagerDrawer" class="top-bar" hidden>
+      <div style="width:100%;">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px;">
+          <span style="font-family:var(--mono); font-weight:800; color:var(--accent-cyan);">
+            🌐 FOREFRONTHAWK.COM SUBDOMAIN &amp; GODADDY SINGLE-LEVEL CNAME REGISTRY
+          </span>
+          <button type="button" class="btn btn-cyan" id="btnCopyAllCnames">📋 Copy All CNAME Records</button>
+        </div>
+        <div style="overflow-x:auto;">
+          <table class="dns-table">
+            <thead>
+              <tr>
+                <th>Application</th>
+                <th>Live Subdomain URL</th>
+                <th>GoDaddy Host Record</th>
+                <th>Points To (GitHub Pages Root)</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody id="dnsTableBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- === HERO SECTION: NEW HAWKDIVE SPOTLIGHT + PLAYABLE MINI-SIMULATOR STAGE === -->
+    <section class="hero-grid">
+      <div class="hero-card">
+        <div>
+          <div style="display:flex; gap:8px; align-items:center; flex-wrap:wrap; margin-bottom:10px;">
+            <span class="chip" style="border-color:var(--accent-cyan); color:var(--accent-cyan);">NEW RELEASE • LIVE NOW</span>
+            <span class="chip" style="border-color:var(--accent); color:var(--accent);">12 SELF-CONTAINED WEB APPS</span>
+          </div>
+          <h1 style="margin:0 0 8px 0; font-family:'Orbitron', var(--font); font-size:clamp(22px, 2.6vw, 31px); font-weight:900; line-height:1.18;">
+            THE FOREFRONT<span style="color:var(--accent);">HAWK</span> INTERACTIVE SUITE
+          </h1>
+          <p style="margin:0 0 14px 0; color:var(--mute); font-size:13.5px; line-height:1.5;">
+            Zero-build, single-file 3D WebGL simulators, Google Maps aviation &amp; skydiving engines, Tiger Woods PGA Tour 10 golf, and multi-window WebAudio DAW &amp; DMX laser studios.
+          </p>
+
+          <!-- Featured Spotlight Card for Dive.Forefronthawk.com -->
+          <div class="dive-featured-spotlight">
+            <div style="display:flex; justify-content:space-between; align-items:center; gap:8px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:8px;">
+                <span style="font-size:24px;">🪂</span>
+                <div>
+                  <div style="font-weight:900; font-size:15px; color:#ffffff;">HawkDive 3D — Skydiving, Wingsuit &amp; Parachute Simulator</div>
+                  <a href="https://dive.forefronthawk.com" target="_blank" rel="noopener" style="font-family:var(--mono); font-size:12px; font-weight:800; color:var(--accent-cyan); text-decoration:underline;">
+                    https://Dive.Forefronthawk.com ↗
+                  </a>
+                </div>
+              </div>
+              <span class="chip" style="background:var(--accent-cyan); color:#04121c; border:none;">GOOGLE MAPS 3D</span>
+            </div>
+            <p style="margin:2px 0 4px 0; font-size:12.5px; color:#e2e8f0; line-height:1.45;">
+              Take off from the airport to your selected Drop Point at <strong>20× speed</strong> in a jump plane or helicopter, watch the cabin door slide open on Green Light, jump out in <strong>1st-Person View</strong>, fly an optional <strong>Wingsuit</strong> at <strong>1× real-time freefall</strong>, and steer your 7-cell parachute onto the Google Maps Drop Zone!
+            </p>
+            <div style="display:flex; gap:8px; flex-wrap:wrap;">
+              <a href="https://dive.forefronthawk.com" target="_blank" rel="noopener" class="btn btn-cyan">🚀 Launch Dive.Forefronthawk.com ↗</a>
+              <button type="button" class="btn btn-gold" id="btnSpotlightPlayDiveSim">⚡ Play HawkDive Mini-Sim →</button>
+              <button type="button" class="btn" id="btnCopyDiveUrl" data-url="https://dive.forefronthawk.com">📋 Copy Dive Link</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; padding-top:8px; border-top:1px solid var(--line);">
+          <div style="font-size:12px; color:var(--mute);">
+            <strong>Quick Launch:</strong>
+            <a href="https://dive.forefronthawk.com" style="color:var(--accent-cyan); margin-left:6px;">Dive.Forefronthawk.com</a> •
+            <a href="https://hawkx.forefronthawk.com" style="color:var(--accent); margin-left:4px;">HawkX.Forefronthawk.com</a> •
+            <a href="https://flies.forefronthawk.com" style="color:#38bdf8; margin-left:4px;">Flies.Forefronthawk.com</a>
+          </div>
+          <span class="chip">60 FPS MOBILE &amp; DESKTOP READY</span>
+        </div>
+      </div>
+
+      <!-- Interactive Live Mini-Simulator Preview Dock -->
+      <div class="sim-stage-card" id="suiteInteractiveStage">
+        <div class="sim-stage-header">
+          <div style="display:flex; align-items:center; gap:7px;">
+            <span style="font-size:15px;">🕹️</span>
+            <span style="font-family:var(--mono); font-weight:900; font-size:11.5px; color:var(--accent-cyan);" id="simStageTitle">
+              LIVE MINI-SIM: HAWKDIVE (DIVE.FOREFRONTHAWK.COM)
+            </span>
+          </div>
+          <div class="sim-tabs" id="simModeTabs">
+            <button type="button" class="sim-tab-btn active" data-sim="dive">🪂 HawkDive</button>
+            <button type="button" class="sim-tab-btn" data-sim="hawkx">🕹️ HawkX 3D</button>
+            <button type="button" class="sim-tab-btn" data-sim="flies">🦅 HawkFlies</button>
+            <button type="button" class="sim-tab-btn" data-sim="golf">⛳ HawkGolf</button>
+            <button type="button" class="sim-tab-btn" data-sim="synth">🎹 Studio/Chroma</button>
+            <button type="button" class="sim-tab-btn" data-sim="globe">🌍 Globe/Enigma</button>
+          </div>
+        </div>
+
+        <div class="sim-canvas-wrap">
+          <canvas id="suiteMiniSimCanvas" width="760" height="310"></canvas>
+        </div>
+
+        <div class="sim-stage-footer">
+          <span id="simStageHint" style="color:#cbd5e1; font-weight:700;">
+            👆 Click/Tap canvas or buttons to Jump Out, Toggle Wingsuit, Pull Parachute &amp; Steer to the DZ Bullseye!
+          </span>
+          <div style="display:flex; gap:6px; flex-wrap:wrap;">
+            <button type="button" class="btn" id="btnSimPrimaryAction" style="min-height:30px; padding:2px 10px; font-size:11px;">🚪 Jump / Pull Chute</button>
+            <button type="button" class="btn" id="btnSimSecondaryAction" style="min-height:30px; padding:2px 10px; font-size:11px;">🦇 Toggle Wingsuit</button>
+            <a href="https://dive.forefronthawk.com" target="_blank" rel="noopener" class="btn btn-cyan" id="btnSimOpenFullApp" style="min-height:30px; padding:2px 12px; font-size:11px;">
+              Open Full App ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- === CATEGORY FILTER & INSTANT SEARCH BAR === -->
+    <section class="filter-bar">
+      <div class="cat-pills" id="categoryFilterPills">
+        <button type="button" class="cat-pill-btn active" data-cat="all">All Suite Apps (12)</button>
+        <button type="button" class="cat-pill-btn" data-cat="aviation">✈️ 3D Aviation &amp; Skydiving</button>
+        <button type="button" class="cat-pill-btn" data-cat="sim">⛳ Sports &amp; Planetary Sim</button>
+        <button type="button" class="cat-pill-btn" data-cat="audio">🎛️ DAW, DJ &amp; Vocal Studio</button>
+        <button type="button" class="cat-pill-btn" data-cat="visual">⚡ 3D Laser, DMX &amp; Shaders</button>
+      </div>
+
+      <div style="display:flex; align-items:center; gap:8px; flex:1; max-width:340px;">
+        <input type="text" id="suiteAppSearchInput" placeholder="🔍 Search apps, subdomains, or features (e.g. dive, golf, wwi)..." style="width:100%;" />
+      </div>
+    </section>
+
+    <!-- === APPLICATION BENTO GRID === -->
+    <section class="apps-bento-grid" id="appsBentoGrid"></section>
+  </div>
+
+  <script>
+    // =========================================================================
+    // === 1. COMPLETE FOREFRONTHAWK APPLICATION DIRECTORY ===
+    // =========================================================================
+
+    const SUITE_APPS = [
+      {
+        id: 'dive',
+        name: 'HawkDive 3D',
+        subdomain: 'Dive.Forefronthawk.com',
+        url: 'https://dive.forefronthawk.com',
+        localFile: 'HawkDive.html',
+        icon: '🪂',
+        accent: '#00f5d4',
+        category: 'aviation',
+        featured: true,
+        simMode: 'dive',
+        tagline: '3D Google Maps Skydiving, Wingsuit & Parachute Simulator',
+        desc: 'Take off from the airport to your selected Drop Point at 20× speed in a jump plane or helicopter, open the cabin door in 1st-person view, fly an optional Wingsuit at 1× real-time freefall, and steer a 7-cell ram-air parachute onto the Google Maps bullseye.',
+        tags: ['20× Takeoff Climb', '1st-Person Door Exit', 'Wingsuit 2.8:1 Glide', 'Ram-Air Parachute', 'Google Maps Multi-Zoom']
+      },
+      {
+        id: 'hawkx',
+        name: 'HAWK-X 3D',
+        subdomain: 'HawkX.Forefronthawk.com',
+        url: 'https://hawkx.forefronthawk.com',
+        localFile: 'HawkX.html',
+        icon: '🕹️',
+        accent: '#facc15',
+        category: 'aviation',
+        featured: false,
+        simMode: 'hawkx',
+        tagline: 'AAA 3D Aerial & Naval Combat Simulator (WWI, WWII, Cold War & Modern)',
+        desc: 'Fly over Earth (Google Maps), the Moon, and Mars across WWI, WWII, Cold War, and Modern Stealth campaigns with aircraft carriers, Aegis destroyers, Commander Mode circular engagement zones, wingman formations, and 5 full-screen mobile HUD layouts.',
+        tags: ['WWI / WWII / Cold War', 'Current GPS Lock', 'CVN-78 Carrier Ops', 'Commander Battle Planner', '5 Full-Screen Layouts']
+      },
+      {
+        id: 'flies',
+        name: 'HawkFlies 3D',
+        subdomain: 'Flies.Forefronthawk.com',
+        url: 'https://flies.forefronthawk.com',
+        localFile: 'HawkFlies.html',
+        icon: '🦅',
+        accent: '#38bdf8',
+        category: 'aviation',
+        featured: false,
+        simMode: 'flies',
+        tagline: 'In-Flight Airplane Mode 3D Airliner & Satellite Explorer',
+        desc: 'Watch a high-detail 3D commercial airliner cruise along your real flight path in Behind-Plane, Above-Plane, Cockpit HUD, or Window Seat views, break free to explore in Airplane Mode, and simulate runway takeoffs and landings.',
+        tags: ['Airplane Mode Ready', 'Behind & Above Views', 'Free-Fly Breakaway', 'Simulated Runway Landing', 'Cruise Altitude Sync']
+      },
+      {
+        id: 'golf',
+        name: 'HawkGolf 3D',
+        subdomain: 'Golf.Forefronthawk.com',
+        url: 'https://golf.forefronthawk.com',
+        localFile: 'HawkGolf.html',
+        icon: '⛳',
+        accent: '#10b981',
+        category: 'sim',
+        featured: false,
+        simMode: 'golf',
+        tagline: 'Tiger Woods PGA Tour 10 Engine & Google Maps Address-to-Course Builder',
+        desc: 'Type any street address or golf course on startup, verify it in Google Maps Satellite view, and automatically transform it into a playable 3/9/18-hole 3D golf course with PBR turf textures, TW10 Power Boost & Bite Spin, and Phone Motion Swing.',
+        tags: ['Address-to-3D Course', 'Tiger Woods 10 PBR', 'Phone Motion Swing', 'Smart Caddie Arc', 'Green Slope Putting']
+      },
+      {
+        id: 'studio',
+        name: 'HawkStudio DAW',
+        subdomain: 'Studio.Forefronthawk.com',
+        url: 'https://studio.forefronthawk.com',
+        localFile: 'HawkStudio.html',
+        icon: '🎛️',
+        accent: '#a855f7',
+        category: 'audio',
+        featured: false,
+        simMode: 'synth',
+        tagline: 'Ultra-Wide Desktop & Foldable Multi-Window Synth & Recording DAW',
+        desc: 'Single-file multi-window digital audio workstation featuring chromatic, major, minor, and modal key synths, tone-shaping filter knobs, custom MIDI import/export, and pop-out mixer windows.',
+        tags: ['Multi-Window DAW', 'Chromatic & Modal Keys', 'MIDI Import/Export', 'Offline MP3/ZIP Render']
+      },
+      {
+        id: 'deck',
+        name: 'HawkDeck DJ',
+        subdomain: 'Deck.Forefronthawk.com',
+        url: 'https://deck.forefronthawk.com',
+        localFile: 'HawkDeck.html',
+        icon: '🎚️',
+        accent: '#f43f5e',
+        category: 'audio',
+        featured: false,
+        simMode: 'synth',
+        tagline: 'Dual-Turntable Live DJ Controller, Scratching & Song Combiner',
+        desc: 'Touch-responsive dual-platter DJ mixing console with real-time vinyl scratching, crossfader curve control, BPM sync, 3-band EQ kills, and live stem/song mashup recording.',
+        tags: ['Dual Vinyl Platters', 'Live Scratching', 'BPM Auto-Sync', 'Song Combiner']
+      },
+      {
+        id: 'calls',
+        name: 'HawkCalls Vocal',
+        subdomain: 'Calls.Forefronthawk.com',
+        url: 'https://calls.forefronthawk.com',
+        localFile: 'HawkCalls.html',
+        icon: '🎙️',
+        accent: '#fb923c',
+        category: 'audio',
+        featured: false,
+        simMode: 'synth',
+        tagline: 'Mobile & Tablet Touch Vocal, Call FX & Live Loop Station',
+        desc: 'Low-latency vocal effects processor, pitch/formant shifter, soundboard sampler, and multi-track overdub looper tailored for mobile and foldable screens.',
+        tags: ['Touch Loop Station', 'Vocal FX Chains', 'Instant Sampler Pads', 'Mobile Optimized']
+      },
+      {
+        id: 'chroma',
+        name: 'HawkChroma RGB',
+        subdomain: 'Chroma.Forefronthawk.com',
+        url: 'https://chroma.forefronthawk.com',
+        localFile: 'HawkChroma.html',
+        icon: '🎹',
+        accent: '#2dd4bf',
+        category: 'visual',
+        featured: false,
+        simMode: 'synth',
+        tagline: '2×10 RGB Keycap Shader & Polyphonic Synth Matrix',
+        desc: 'Interactive mechanical keycap lighting designer and polyphonic synthesizer that broadcasts live #HEX accent palettes across every open ForefrontHawk application.',
+        tags: ['2×10 RGB Key Matrix', 'Cross-App #HEX Sync', 'WebAudio Poly Synth', 'Shader Presets']
+      },
+      {
+        id: 'shine',
+        name: 'HawkShine 3D DMX',
+        subdomain: 'Shine.Forefronthawk.com',
+        url: 'https://shine.forefronthawk.com',
+        localFile: 'HawkShine.html',
+        icon: '⚡',
+        accent: '#fde047',
+        category: 'visual',
+        featured: false,
+        simMode: 'globe',
+        tagline: '3D X/Y/Z Laser, DMX Moving-Head, Smoke & Pyrotechnics Stage Studio',
+        desc: 'Choreograph volumetric 3D laser beams, DMX moving-head spotlights, CO2 fog jets, and stage pyrotechnics synchronized to live audio spectrum analysis.',
+        tags: ['3D X/Y/Z Lasers', 'DMX Moving Heads', 'Pyro & Fog Sim', 'Audio-Reactive']
+      },
+      {
+        id: 'rgb',
+        name: 'HawkRGB Script',
+        subdomain: 'RGB.Forefronthawk.com',
+        url: 'https://rgb.forefronthawk.com',
+        localFile: 'HawkRGB.html',
+        icon: '🎞️',
+        accent: '#ec4899',
+        category: 'visual',
+        featured: false,
+        simMode: 'globe',
+        tagline: 'Timeline DJ Color Script & Stage Lighting Sequencer',
+        desc: 'Cue-based color timeline sequencer for scripting beat-locked strobe, chase, and gradient transitions across multi-zone LED rigs.',
+        tags: ['Beat-Locked Timeline', 'LED Zone Routing', 'Color Script Export', 'Live Strobe Cues']
+      },
+      {
+        id: 'globe',
+        name: 'HawkGlobe 3D',
+        subdomain: 'Globe.Forefronthawk.com',
+        url: 'https://globe.forefronthawk.com',
+        localFile: 'HawkGlobe.html',
+        icon: '🌍',
+        accent: '#60a5fa',
+        category: 'sim',
+        featured: false,
+        simMode: 'globe',
+        tagline: 'HD WebGL 3D Earth, Continental Drift Time Machine & 4 Cataclysms',
+        desc: 'Explore Earth from the Big Bang and Pangea continental drift to the present day, launch the Solar System live wallpaper, and trigger 4 cinematic 3D planetary cataclysms.',
+        tags: ['3D WebGL Earth', 'Pangea Time Machine', 'Solar System Mode', '4 3D Cataclysms']
+      },
+      {
+        id: 'enigma',
+        name: 'HawkEnigma Droste',
+        subdomain: 'Enigma.Forefronthawk.com',
+        url: 'https://enigma.forefronthawk.com',
+        localFile: 'HawkEnigma.html',
+        icon: '🌀',
+        accent: '#c084fc',
+        category: 'visual',
+        featured: false,
+        simMode: 'globe',
+        tagline: 'Infinite Recursive Hawk-Eye Droste Zoom & Audio Visualizer Studio',
+        desc: 'Multi-format audio visualizer featuring the hypnotic Infinite Recursive Hawk-Eye Droste tunnel zoom and standalone full-screen screen saver export.',
+        tags: ['Recursive Droste Zoom', 'Audio Spectrum Shader', 'Screensaver Export', '60fps WebGL']
+      }
+    ];
+
+    // =========================================================================
+    // === 2. RENDER BENTO GRID, SEARCH, FILTERS & GODADDY DNS TABLE ===
+    // =========================================================================
+
+    let activeCategory = 'all';
+    let searchQuery = '';
+
+    function renderAppsBentoGrid() {
+      const grid = document.getElementById('appsBentoGrid');
+      grid.innerHTML = '';
+
+      const filtered = SUITE_APPS.filter(app => {
+        const matchCat = activeCategory === 'all' || app.category === activeCategory;
+        const q = searchQuery.toLowerCase();
+        const matchSearch = !q ||
+          app.name.toLowerCase().includes(q) ||
+          app.subdomain.toLowerCase().includes(q) ||
+          app.tagline.toLowerCase().includes(q) ||
+          app.desc.toLowerCase().includes(q) ||
+          app.tags.some(t => t.toLowerCase().includes(q));
+        return matchCat && matchSearch;
+      });
+
+      filtered.forEach(app => {
+        const card = document.createElement('article');
+        card.className = 'app-bento-card' + (app.featured ? ' featured-dive' : '');
+        card.innerHTML = `
+          <div>
+            <div class="app-card-top">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <div class="app-icon-box" style="background:${app.accent}22; border:1.5px solid ${app.accent}; color:${app.accent};">
+                  ${app.icon}
+                </div>
+                <div>
+                  <div style="display:flex; align-items:center; gap:6px; flex-wrap:wrap;">
+                    <h2 style="margin:0; font-size:16px; font-weight:900; color:var(--text);">${app.name}</h2>
+                    ${app.featured ? '<span class="chip" style="background:#00f5d4; color:#04121c; border:none; padding:1px 7px;">NEW</span>' : ''}
+                  </div>
+                  <a href="${app.url}" target="_blank" rel="noopener" class="app-domain-link" title="Open ${app.subdomain}">
+                    ${app.subdomain} ↗
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div style="font-weight:800; font-size:12.5px; color:${app.accent}; margin:10px 0 4px 0;">
+              ${app.tagline}
+            </div>
+            <p style="margin:0 0 10px 0; font-size:12px; color:var(--mute); line-height:1.45;">
+              ${app.desc}
+            </p>
+          </div>
+
+          <div>
+            <div class="app-tags-row" style="margin-bottom:10px;">
+              ${app.tags.map(t => `<span class="app-tag">${t}</span>`).join('')}
+            </div>
+            <div class="app-actions-row">
+              <a href="${app.url}" target="_blank" rel="noopener" class="btn ${app.featured ? 'btn-cyan' : 'btn-gold'}" style="flex:1;">
+                🚀 Launch ${app.subdomain.split('.')[0]} ↗
+              </a>
+              <button type="button" class="btn btn-preview-sim" data-sim="${app.simMode}" data-name="${app.name}" data-url="${app.url}">
+                ⚡ Mini-Sim
+              </button>
+              <button type="button" class="btn btn-copy-link" data-url="${app.url}" title="Copy ${app.url}">
+                📋
+              </button>
+            </div>
+          </div>
+        `;
+
+        card.querySelector('.btn-preview-sim').addEventListener('click', () => {
+          switchMiniSimMode(app.simMode, app.name, app.url);
+          document.getElementById('suiteInteractiveStage').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        });
+
+        card.querySelector('.btn-copy-link').addEventListener('click', () => {
+          copyTextWithFallback(app.url, `Copied ${app.subdomain} URL!`);
+        });
+
+        grid.appendChild(card);
+      });
+    }
+
+    function renderDnsTable() {
+      const tbody = document.getElementById('dnsTableBody');
+      tbody.innerHTML = '';
+      SUITE_APPS.forEach(app => {
+        const host = app.subdomain.split('.')[0].toLowerCase();
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${app.icon} ${app.name}</strong></td>
+          <td><a href="${app.url}" target="_blank" rel="noopener" style="color:var(--accent-cyan); font-family:var(--mono); font-weight:700;">${app.subdomain} ↗</a></td>
+          <td><code style="color:#fde047;">${host}</code> (CNAME)</td>
+          <td><code>forefronthawk.github.io</code> / <code>forefronthawk.com</code></td>
+          <td><button type="button" class="btn btn-copy-cname" style="min-height:28px; padding:2px 8px; font-size:11px;">📋 Copy CNAME</button></td>
+        `;
+        tr.querySelector('.btn-copy-cname').addEventListener('click', () => {
+          copyTextWithFallback(`${host} CNAME forefronthawk.com`, `Copied GoDaddy CNAME for ${app.subdomain}!`);
+        });
+        tbody.appendChild(tr);
+      });
+    }
+
+    function copyTextWithFallback(text, toastMessage) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      try { document.execCommand('copy'); } catch (e) {}
+      ta.remove();
+      showSuiteToast(toastMessage || 'Copied to clipboard!');
+    }
+
+    let toastTimer = null;
+    function showSuiteToast(msg) {
+      const el = document.getElementById('suiteToast');
+      el.textContent = '✅ ' + msg;
+      el.classList.add('show');
+      if (toastTimer) clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => el.classList.remove('show'), 2600);
+    }
+
+    // =========================================================================
+    // === 3. EMBEDDED PLAYABLE HTML5 CANVAS MINI-SIMULATOR ENGINE ===
+    // =========================================================================
+
+    const MiniSim = {
+      mode: 'dive', // 'dive' | 'hawkx' | 'flies' | 'golf' | 'synth' | 'globe'
+      // HawkDive Mini-Sim state
+      divePhase: 'CLIMB', // 'CLIMB' | 'DOOR_OPEN' | 'FREEFALL' | 'CANOPY' | 'LANDED'
+      diveAlt: 0,
+      diveX: 160,
+      diveVx: 0,
+      wingsuit: false,
+      // HawkX Mini-Sim state
+      hxEra: 0,
+      hxPlaneX: 140,
+      hxPlaneY: 155,
+      hxMissiles: [],
+      hxTargets: [
+        { x: 560, y: 80, vx: -1.4, name: 'Fokker / MiG / Su-57' },
+        { x: 640, y: 210, vx: -1.1, name: 'Zeppelin / V-1 / Drone' }
+      ],
+      // HawkGolf Mini-Sim state
+      golfBall: { x: 110, y: 245, vx: 0, vy: 0, flying: false },
+      golfPower: 82,
+      // Synth state
+      synthNotes: [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88, 523.25],
+      activePad: -1,
+      audioCtx: null,
+      t: 0
+    };
+
+    function playSynthTone(freq) {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!MiniSim.audioCtx && AudioCtx) MiniSim.audioCtx = new AudioCtx();
+        if (!MiniSim.audioCtx) return;
+        if (MiniSim.audioCtx.state === 'suspended') MiniSim.audioCtx.resume();
+        const now = MiniSim.audioCtx.currentTime;
+        const osc = MiniSim.audioCtx.createOscillator();
+        const g = MiniSim.audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(freq, now);
+        g.gain.setValueAtTime(0.18, now);
+        g.gain.exponentialRampToValueAtTime(0.002, now + 0.35);
+        osc.connect(g).connect(MiniSim.audioCtx.destination);
+        osc.start(now);
+        osc.stop(now + 0.36);
+      } catch (e) {}
+    }
+
+    function switchMiniSimMode(simMode, appName = null, appUrl = null) {
+      MiniSim.mode = simMode;
+      document.querySelectorAll('#simModeTabs .sim-tab-btn').forEach(b => {
+        b.classList.toggle('active', b.getAttribute('data-sim') === simMode);
+      });
+
+      const titleEl = document.getElementById('simStageTitle');
+      const hintEl = document.getElementById('simStageHint');
+      const btn1 = document.getElementById('btnSimPrimaryAction');
+      const btn2 = document.getElementById('btnSimSecondaryAction');
+      const openLink = document.getElementById('btnSimOpenFullApp');
+
+      const defaultApp = SUITE_APPS.find(a => a.simMode === simMode) || SUITE_APPS[0];
+      openLink.href = appUrl || defaultApp.url;
+      openLink.textContent = `Open ${appName || defaultApp.subdomain} ↗`;
+
+      if (simMode === 'dive') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWKDIVE 3D (DIVE.FOREFRONTHAWK.COM)';
+        hintEl.textContent = '🪂 Watch 20× climb to 14,000 FT, click Jump Out, move mouse/touch to steer toward DZ Bullseye & Pull Parachute!';
+        btn1.textContent = '🚪 Jump Out / Pull Chute';
+        btn2.textContent = '🦇 Toggle Wingsuit';
+        MiniSim.divePhase = 'CLIMB';
+        MiniSim.diveAlt = 0;
+        MiniSim.diveX = 160;
+      } else if (simMode === 'hawkx') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWK-X 3D (WWI / WWII / COLD WAR / MODERN)';
+        hintEl.textContent = '🕹️ Click canvas to fire homing missiles and switch between WWI Biplane, WWII Mustang, Cold War Phantom & Stealth Jet!';
+        btn1.textContent = '🚀 Fire Homing Missile';
+        btn2.textContent = '🎖️ Switch Era (WWI/WWII/CW)';
+      } else if (simMode === 'flies') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWKFLIES 3D (AIRPLANE MODE EXPLORER)';
+        hintEl.textContent = '🦅 3D Airliner cruising along satellite corridor — click to toggle Free-Fly Breakaway or Simulated Runway Landing!';
+        btn1.textContent = '🕹️ Toggle Free-Fly';
+        btn2.textContent = '🛬 Simulate Landing';
+      } else if (simMode === 'golf') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWKGOLF PGA TOUR 10 (ADDRESS-TO-COURSE)';
+        hintEl.textContent = '⛳ Click "Drive Ball" to launch a Tiger Woods 10 shot with Power Boost & Backspin Bite onto the island green!';
+        btn1.textContent = '🏌️ Drive Ball (108% Boost)';
+        btn2.textContent = '🌀 Apply Backspin Bite';
+      } else if (simMode === 'synth') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWKSTUDIO & CHROMA RGB SYNTH MATRIX';
+        hintEl.textContent = '🎹 Click any RGB Synth Pad on the canvas to play live WebAudio chords and sync #HEX colors!';
+        btn1.textContent = '🎵 Play Arp Chord';
+        btn2.textContent = '🌈 Cycle RGB Shader';
+      } else if (simMode === 'globe') {
+        titleEl.textContent = 'LIVE MINI-SIM: HAWKGLOBE & HAWKENIGMA DROSTE TUNNEL';
+        hintEl.textContent = '🌍 Interactive 3D Planetary Grid & Infinite Recursive Hawk-Eye Droste Zoom!';
+        btn1.textContent = '☄️ Trigger Cataclysm Pulse';
+        btn2.textContent = '🌀 Boost Droste Zoom';
+      }
+    }
+
+    function updateAndDrawMiniSim() {
+      const cv = document.getElementById('suiteMiniSimCanvas');
+      if (!cv) return;
+      const ctx = cv.getContext('2d');
+      const w = cv.width, h = cv.height;
+      MiniSim.t += 0.03;
+
+      ctx.fillStyle = '#040a16';
+      ctx.fillRect(0, 0, w, h);
+
+      if (MiniSim.mode === 'dive') {
+        // Dynamic Google Maps Satellite Grid scaling with altitude
+        const altNorm = MiniSim.diveAlt / 14000;
+        const gridStep = Math.max(18, Math.round(70 - altNorm * 45));
+        ctx.strokeStyle = 'rgba(0, 245, 212, 0.16)';
+        ctx.lineWidth = 1;
+        for (let x = 0; x < w; x += gridStep) {
+          ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+        }
+        for (let y = 0; y < h; y += gridStep) {
+          ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+        }
+
+        // Draw Drop Zone Bullseye on Ground (Right side x=560, y=268)
+        const dzX = 560, dzY = 268;
+        [36, 24, 12].forEach((r, idx) => {
+          ctx.fillStyle = idx === 0 ? '#ef4444' : idx === 1 ? '#ffffff' : '#00f5d4';
+          ctx.beginPath();
+          ctx.ellipse(dzX, dzY, r, r * 0.35, 0, 0, Math.PI * 2);
+          ctx.fill();
+        });
+        ctx.fillStyle = '#fde047';
+        ctx.font = 'bold 11px Inter, sans-serif';
+        ctx.fillText('🎯 GOOGLE MAPS DROP ZONE BULLSEYE', dzX - 95, dzY + 24);
+
+        if (MiniSim.divePhase === 'CLIMB') {
+          MiniSim.diveAlt = Math.min(14000, MiniSim.diveAlt + 120);
+          MiniSim.diveX = 90 + (MiniSim.diveAlt / 14000) * 320;
+          if (MiniSim.diveAlt >= 14000) MiniSim.divePhase = 'DOOR_OPEN';
+        } else if (MiniSim.divePhase === 'FREEFALL') {
+          const sink = MiniSim.wingsuit ? 42 : 85;
+          MiniSim.diveAlt = Math.max(0, MiniSim.diveAlt - sink);
+          MiniSim.diveX += (MiniSim.wingsuit ? 2.4 : 1.1) + MiniSim.diveVx;
+          if (MiniSim.diveAlt <= 3200) MiniSim.divePhase = 'CANOPY';
+        } else if (MiniSim.divePhase === 'CANOPY') {
+          MiniSim.diveAlt = Math.max(0, MiniSim.diveAlt - 22);
+          MiniSim.diveX += (dzX - MiniSim.diveX) * 0.035;
+          if (MiniSim.diveAlt <= 0) MiniSim.divePhase = 'LANDED';
+        }
+
+        const skyY = 265 - (MiniSim.diveAlt / 14000) * 215;
+
+        // Draw Jump Plane at 14,000 FT
+        const planeX = MiniSim.divePhase === 'CLIMB' ? MiniSim.diveX : 410 + ((MiniSim.t * 25) % 260);
+        const planeY = MiniSim.divePhase === 'CLIMB' ? skyY : 50;
+        ctx.fillStyle = '#e2e8f0';
+        ctx.fillRect(planeX - 24, planeY - 6, 48, 12);
+        ctx.fillStyle = MiniSim.divePhase === 'CLIMB' ? '#ef4444' : '#10b981';
+        ctx.fillRect(planeX + 6, planeY - 4, 8, 9); // Door status
+
+        // Draw Skydiver / Wingsuit / Parachute
+        if (MiniSim.divePhase !== 'CLIMB') {
+          if (MiniSim.divePhase === 'CANOPY' || MiniSim.divePhase === 'LANDED') {
+            ctx.fillStyle = '#f97316';
+            ctx.beginPath();
+            ctx.arc(MiniSim.diveX, skyY - 18, 18, Math.PI, 0);
+            ctx.fill();
+            ctx.strokeStyle = '#ffffff';
+            ctx.beginPath();
+            ctx.moveTo(MiniSim.diveX - 14, skyY - 18); ctx.lineTo(MiniSim.diveX, skyY);
+            ctx.moveTo(MiniSim.diveX + 14, skyY - 18); ctx.lineTo(MiniSim.diveX, skyY);
+            ctx.stroke();
+          }
+          ctx.fillStyle = MiniSim.wingsuit ? '#f97316' : '#00f5d4';
+          ctx.beginPath();
+          ctx.arc(MiniSim.diveX, skyY, 7, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        // Telemetry HUD Box
+        ctx.fillStyle = 'rgba(8, 15, 28, 0.88)';
+        ctx.fillRect(14, 14, 305, 64);
+        ctx.strokeStyle = '#00f5d4';
+        ctx.strokeRect(14, 14, 305, 64);
+        ctx.fillStyle = '#00f5d4';
+        ctx.font = 'bold 14px JetBrains Mono, monospace';
+        ctx.fillText(`ALT: ${Math.round(MiniSim.diveAlt).toLocaleString()} FT AGL`, 24, 36);
+        ctx.fillStyle = '#fde047';
+        ctx.font = 'bold 11px Inter, sans-serif';
+        const statusStr = MiniSim.divePhase === 'CLIMB'
+          ? '🛫 20× SPEED TAKEOFF CLIMB TO DROP POINT'
+          : MiniSim.divePhase === 'DOOR_OPEN'
+          ? '🟢 GREEN LIGHT! DOOR OPEN — CLICK TO JUMP!'
+          : MiniSim.divePhase === 'FREEFALL'
+          ? (MiniSim.wingsuit ? '🦇 WINGSUIT GLIDE (2.8:1) — CLICK TO PULL' : '🪂 1× REAL-TIME FREEFALL (120 MPH)')
+          : MiniSim.divePhase === 'CANOPY'
+          ? '🪂 7-CELL CANOPY STEERING TO DZ BULLSEYE'
+          : '🏆 BULLSEYE STAND-UP TOUCHDOWN! CLICK TO RE-JUMP';
+        ctx.fillText(statusStr, 24, 56);
+      } else if (MiniSim.mode === 'hawkx') {
+        const eras = ['🎖️ WWI (Sopwith Camel Biplane)', '⚔️ WWII (P-51D Mustang)', '☢️ Cold War (F-4E Phantom II)', '🚀 Modern (F-160 Stealth VTOL)'];
+        ctx.strokeStyle = 'rgba(56, 189, 248, 0.2)';
+        for (let r = 40; r < 340; r += 60) {
+          ctx.beginPath(); ctx.arc(w / 2, h / 2, r, 0, Math.PI * 2); ctx.stroke();
+        }
+        ctx.fillStyle = '#00f5d4';
+        ctx.beginPath();
+        ctx.moveTo(MiniSim.hxPlaneX + 20, MiniSim.hxPlaneY);
+        ctx.lineTo(MiniSim.hxPlaneX - 14, MiniSim.hxPlaneY - 10);
+        ctx.lineTo(MiniSim.hxPlaneX - 14, MiniSim.hxPlaneY + 10);
+        ctx.closePath();
+        ctx.fill();
+
+        MiniSim.hxTargets.forEach(tg => {
+          tg.x += tg.vx;
+          if (tg.x < 240) tg.x = 710;
+          ctx.strokeStyle = '#ef4444';
+          ctx.strokeRect(tg.x - 14, tg.y - 14, 28, 28);
+          ctx.fillStyle = '#fca5a5';
+          ctx.font = 'bold 10px JetBrains Mono, monospace';
+          ctx.fillText(tg.name, tg.x - 35, tg.y - 18);
+        });
+
+        for (let i = MiniSim.hxMissiles.length - 1; i >= 0; i--) {
+          const m = MiniSim.hxMissiles[i];
+          m.x += 9;
+          ctx.fillStyle = '#fde047';
+          ctx.fillRect(m.x, m.y - 2, 14, 4);
+          if (m.x > w) MiniSim.hxMissiles.splice(i, 1);
+        }
+
+        ctx.fillStyle = '#fde047';
+        ctx.font = 'bold 13px Orbitron, sans-serif';
+        ctx.fillText(`CAMPAIGN ERA: ${eras[MiniSim.hxEra]} • 📍 GPS READY`, 20, 32);
+      } else if (MiniSim.mode === 'flies') {
+        ctx.strokeStyle = '#38bdf8';
+        ctx.lineWidth = 3;
+        ctx.setLineDash([8, 6]);
+        ctx.beginPath();
+        ctx.moveTo(60, 230);
+        ctx.quadraticCurveTo(380, 60, 700, 190);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const p = (Math.sin(MiniSim.t * 0.5) + 1) * 0.5;
+        const ax = 60 + p * 640;
+        const ay = 210 - Math.sin(p * Math.PI) * 110;
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(ax, ay, 10, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.fillStyle = '#38bdf8';
+        ctx.font = 'bold 12px JetBrains Mono, monospace';
+        ctx.fillText('✈️ BOEING 787 / AIRBUS A350 • CRUISE 36,000 FT • AIRPLANE MODE FREE-FLY', 20, 32);
+      } else if (MiniSim.mode === 'golf') {
+        // Green fairway & island green
+        ctx.fillStyle = '#14532d';
+        ctx.fillRect(0, 248, w, 62);
+        ctx.fillStyle = '#22c55e';
+        ctx.beginPath();
+        ctx.ellipse(610, 255, 65, 16, 0, 0, Math.PI * 2);
+        ctx.fill();
+
+        // Flagstick
+        ctx.strokeStyle = '#ffffff';
+        ctx.beginPath(); ctx.moveTo(620, 255); ctx.lineTo(620, 205); ctx.stroke();
+        ctx.fillStyle = '#ef4444';
+        ctx.fillRect(620, 205, 18, 11);
+
+        // Dotted Caddie Shot Arc
+        ctx.strokeStyle = '#fde047';
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        ctx.moveTo(110, 245);
+        ctx.quadraticCurveTo(370, 45, 620, 252);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        if (MiniSim.golfBall.flying) {
+          MiniSim.golfBall.x += MiniSim.golfBall.vx;
+          MiniSim.golfBall.y += MiniSim.golfBall.vy;
+          MiniSim.golfBall.vy += 0.18;
+          if (MiniSim.golfBall.y >= 248) {
+            MiniSim.golfBall.y = 248;
+            MiniSim.golfBall.flying = false;
+          }
+        }
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(MiniSim.golfBall.x, MiniSim.golfBall.y, 6, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.fillStyle = '#4ade80';
+        ctx.font = 'bold 12px JetBrains Mono, monospace';
+        ctx.fillText('⛳ TIGER WOODS PGA TOUR 10 ENGINE • PEBBLE BEACH #7 (PLAYS LIKE 154 YDS)', 20, 32);
+      } else if (MiniSim.mode === 'synth') {
+        const cols = ['#ef4444', '#f97316', '#facc15', '#10b981', '#00f5d4', '#38bdf8', '#818cf8', '#e879f9'];
+        const padW = (w - 80) / 8;
+        for (let i = 0; i < 8; i++) {
+          const x = 40 + i * padW;
+          const active = (MiniSim.activePad === i);
+          ctx.fillStyle = active ? '#ffffff' : cols[i];
+          ctx.fillRect(x + 4, 80, padW - 8, 160);
+          ctx.fillStyle = '#04121c';
+          ctx.font = 'bold 12px JetBrains Mono, monospace';
+          ctx.fillText(`PAD ${i + 1}`, x + 16, 165);
+        }
+        ctx.fillStyle = '#00f5d4';
+        ctx.fillText('🎹 CLICK ANY RGB KEYCAP PAD TO PLAY WEBAUDIO SYNTH & SYNC #HEX', 20, 36);
+      } else if (MiniSim.mode === 'globe') {
+        const cx = w / 2, cy = h / 2;
+        for (let i = 6; i >= 1; i--) {
+          const r = ((i * 28 + (MiniSim.t * 24) % 28));
+          ctx.strokeStyle = i % 2 === 0 ? '#00f5d4' : '#d4af37';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.arc(cx, cy, r, 0, Math.PI * 2);
+          ctx.stroke();
+        }
+        ctx.fillStyle = '#fde047';
+        ctx.font = 'bold 12px Orbitron, sans-serif';
+        ctx.fillText('🌀 INFINITE RECURSIVE HAWK-EYE DROSTE & 3D PLANETARY ENGINE', 20, 32);
+      }
+
+      requestAnimationFrame(updateAndDrawMiniSim);
+    }
+
+    // =========================================================================
+    // === 4. SHARED UI THEME SYNC & EVENT WIRING ===
+    // =========================================================================
+
+    let syncChannel = null;
+    try {
+      if (typeof BroadcastChannel !== 'undefined') {
+        syncChannel = new BroadcastChannel('forefronthawk_ui_sync');
+        syncChannel.onmessage = (e) => {
+          if (e.data && e.data.accent) applyAccentHex(e.data.accent, false);
+          if (e.data && e.data.theme) applyTheme(e.data.theme, false);
+        };
+      }
+    } catch (e) {}
+
+    function applyAccentHex(hex, broadcast = true) {
+      const clean = /^#[0-9A-Fa-f]{6}$/.test(hex) ? hex.toUpperCase() : '#D4AF37';
+      document.documentElement.style.setProperty('--accent', clean);
+      document.getElementById('liveHexBadge').textContent = clean;
+      document.getElementById('hexColorInput').value = clean;
+      try { localStorage.setItem('ffh_accent_hex', clean); } catch (e) {}
+      if (broadcast && syncChannel) {
+        try { syncChannel.postMessage({ accent: clean }); } catch (e) {}
+      }
+    }
+
+    function applyTheme(themeName, broadcast = true) {
+      document.documentElement.setAttribute('data-theme', themeName);
+      document.getElementById('selUiTheme').value = themeName;
+      try { localStorage.setItem('ffh_ui_theme', themeName); } catch (e) {}
+      if (broadcast && syncChannel) {
+        try { syncChannel.postMessage({ theme: themeName }); } catch (e) {}
+      }
+    }
+
+    window.onload = () => {
+      try {
+        const savedTheme = localStorage.getItem('ffh_ui_theme');
+        if (savedTheme) applyTheme(savedTheme, false);
+        const savedHex = localStorage.getItem('ffh_accent_hex');
+        if (savedHex) applyAccentHex(savedHex, false);
+      } catch (e) {}
+
+      renderAppsBentoGrid();
+      renderDnsTable();
+      switchMiniSimMode('dive');
+      requestAnimationFrame(updateAndDrawMiniSim);
+
+      // Category Filter Pills
+      document.querySelectorAll('#categoryFilterPills .cat-pill-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('#categoryFilterPills .cat-pill-btn').forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          activeCategory = btn.getAttribute('data-cat');
+          renderAppsBentoGrid();
+        });
+      });
+
+      // Instant Search Input
+      document.getElementById('suiteAppSearchInput').addEventListener('input', (e) => {
+        searchQuery = e.target.value.trim();
+        renderAppsBentoGrid();
+      });
+
+      // Mini-Sim Mode Tabs
+      document.querySelectorAll('#simModeTabs .sim-tab-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          switchMiniSimMode(btn.getAttribute('data-sim'));
+        });
+      });
+
+      // Mini-Sim Canvas & Action Buttons
+      const triggerSimPrimary = () => {
+        if (MiniSim.mode === 'dive') {
+          if (MiniSim.divePhase === 'CLIMB') {
+            MiniSim.diveAlt = 14000;
+            MiniSim.divePhase = 'DOOR_OPEN';
+          } else if (MiniSim.divePhase === 'DOOR_OPEN') {
+            MiniSim.divePhase = 'FREEFALL';
+          } else if (MiniSim.divePhase === 'FREEFALL') {
+            MiniSim.divePhase = 'CANOPY';
+          } else if (MiniSim.divePhase === 'LANDED') {
+            MiniSim.diveAlt = 0;
+            MiniSim.diveX = 160;
+            MiniSim.divePhase = 'CLIMB';
+          }
+        } else if (MiniSim.mode === 'hawkx') {
+          MiniSim.hxMissiles.push({ x: MiniSim.hxPlaneX + 20, y: MiniSim.hxPlaneY });
+          playSynthTone(520);
+        } else if (MiniSim.mode === 'golf') {
+          MiniSim.golfBall.x = 110;
+          MiniSim.golfBall.y = 245;
+          MiniSim.golfBall.vx = 7.4;
+          MiniSim.golfBall.vy = -6.2;
+          MiniSim.golfBall.flying = true;
+          playSynthTone(440);
+        } else if (MiniSim.mode === 'synth') {
+          const idx = Math.floor(Math.random() * 8);
+          MiniSim.activePad = idx;
+          playSynthTone(MiniSim.synthNotes[idx]);
+          setTimeout(() => { MiniSim.activePad = -1; }, 260);
+        } else {
+          playSynthTone(330);
+        }
+      };
+
+      document.getElementById('btnSimPrimaryAction').addEventListener('click', triggerSimPrimary);
+      document.getElementById('suiteMiniSimCanvas').addEventListener('pointerdown', (e) => {
+        if (MiniSim.mode === 'synth') {
+          const rect = e.currentTarget.getBoundingClientRect();
+          const relX = ((e.clientX - rect.left) / rect.width) * e.currentTarget.width;
+          const idx = Math.min(7, Math.max(0, Math.floor((relX - 40) / ((e.currentTarget.width - 80) / 8))));
+          MiniSim.activePad = idx;
+          playSynthTone(MiniSim.synthNotes[idx]);
+          setTimeout(() => { MiniSim.activePad = -1; }, 260);
+        } else {
+          triggerSimPrimary();
+        }
+      });
+
+      document.getElementById('btnSimSecondaryAction').addEventListener('click', () => {
+        if (MiniSim.mode === 'dive') {
+          MiniSim.wingsuit = !MiniSim.wingsuit;
+          showSuiteToast(MiniSim.wingsuit ? '🦇 Wingsuit Enabled in Mini-Sim!' : '🪂 Standard Freefall Suit Active');
+        } else if (MiniSim.mode === 'hawkx') {
+          MiniSim.hxEra = (MiniSim.hxEra + 1) % 4;
+        } else {
+          triggerSimPrimary();
+        }
+      });
+
+      document.getElementById('btnSpotlightPlayDiveSim').addEventListener('click', () => {
+        switchMiniSimMode('dive');
+        MiniSim.diveAlt = 14000;
+        MiniSim.divePhase = 'FREEFALL';
+      });
+
+      document.getElementById('btnCopyDiveUrl').addEventListener('click', () => {
+        copyTextWithFallback('https://dive.forefronthawk.com', 'Copied https://dive.forefronthawk.com to clipboard!');
+      });
+
+      // Customizer & DNS Drawers
+      document.getElementById('btnToggleThemeDrawer').addEventListener('click', () => {
+        const d = document.getElementById('themeCustomizerDrawer');
+        d.hidden = !d.hidden;
+      });
+      document.getElementById('btnToggleDnsDrawer').addEventListener('click', () => {
+        const d = document.getElementById('dnsManagerDrawer');
+        d.hidden = !d.hidden;
+      });
+
+      document.getElementById('btnApplyHexColor').addEventListener('click', () => {
+        applyAccentHex(document.getElementById('hexColorInput').value.trim());
+        showSuiteToast('Applied custom #HEX accent across ForefrontHawk Suite!');
+      });
+
+      document.getElementById('selUiTheme').addEventListener('change', (e) => {
+        applyTheme(e.target.value);
+      });
+
+      document.getElementById('selUiFont').addEventListener('change', (e) => {
+        document.documentElement.style.setProperty('--font', e.target.value);
+      });
+
+      document.getElementById('btnResetThemeDefault').addEventListener('click', () => {
+        applyTheme('dark');
+        applyAccentHex('#D4AF37');
+        document.documentElement.style.setProperty('--font', "'Inter', sans-serif");
+        showSuiteToast('Reset to Obsidian Gold Default!');
+      });
+
+      document.getElementById('btnCopyAllCnames').addEventListener('click', () => {
+        const lines = SUITE_APPS.map(a => `${a.subdomain.split('.')[0].toLowerCase()} CNAME forefronthawk.com`).join('\n');
+        copyTextWithFallback(lines, 'Copied all 12 GoDaddy CNAME records (including dive.forefronthawk.com)!');
+      });
+    };
+  </script>
+</body>
+</html>
