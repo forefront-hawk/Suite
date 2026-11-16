@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+<html lang="en" data-device="desktop" data-theme="gold">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HawkSuite Portal (forefronthawk.com) &amp; HawkOAR ΩΑΡ Sovereign Studio (oar.forefronthawk.com) | Forefront Hawk &amp; Gemini Aargon</title>
+<style>
+  :root {
+    --bg: #070A12;
+    --bg-panel: #0E1422;
+    --bg-card: #141D31;
+    --accent: #D4AF37;
+    --accent-soft: rgba(212, 175, 55, 0.15);
+    --cyan: #00F5D4;
+    --cyan-soft: rgba(0, 245, 212, 0.14);
+    --emerald: #10B981;
+    --emerald-soft: rgba(16, 185, 129, 0.15);
+    --danger: #F87171;
+    --danger-soft: rgba(248, 113, 113, 0.15);
+    --text: #F8FAFC;
+    --text-muted: #94A3B8;
+    --border: rgba(212, 175, 55, 0.34);
+    --font-sans: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+  }
+
+  /* All 14 Clean HawkChroma Themes (No Party Mode) */
+  html[data-theme="tactical"]   { --bg:#040D15; --bg-panel:#081928; --bg-card:#0D253B; --accent:#00F5D4; --cyan:#38BDF8; --text:#F0F9FF; --text-muted:#7DD3FC; --border:rgba(0,245,212,0.38); }
+  html[data-theme="cyberpunk"]  { --bg:#0B0318; --bg-panel:#15072C; --bg-card:#210B42; --accent:#FF2A85; --cyan:#00F0FF; --text:#FDF2F8; --text-muted:#C4B5FD; --border:rgba(255,42,133,0.42); }
+  html[data-theme="matrix"]     { --bg:#020A04; --bg-panel:#05160A; --bg-card:#092412; --accent:#00FF66; --cyan:#38BDF8; --text:#ECFDF5; --text-muted:#6EE7B7; --border:rgba(0,255,102,0.38); }
+  html[data-theme="daylight"]   { --bg:#F4F6F9; --bg-panel:#FFFFFF; --bg-card:#EEF2F6; --accent:#9A6F0B; --cyan:#0369A1; --text:#0F172A; --text-muted:#475569; --border:rgba(154,111,11,0.32); }
+  html[data-theme="byzantium"]  { --bg:#0E0616; --bg-panel:#1A0B28; --bg-card:#26113B; --accent:#FBBF24; --cyan:#C084FC; --text:#FAF5FF; --text-muted:#D8B4FE; --border:rgba(251,191,36,0.38); }
+  html[data-theme="emerald"]    { --bg:#02100C; --bg-panel:#061E17; --bg-card:#0B2E24; --accent:#10B981; --cyan:#A7F3D0; --text:#ECFDF5; --text-muted:#6EE7B7; --border:rgba(16,185,129,0.38); }
+  html[data-theme="crimson"]    { --bg:#120408; --bg-panel:#220810; --bg-card:#310D18; --accent:#FB7185; --cyan:#FBBF24; --text:#FFF1F2; --text-muted:#FDA4AF; --border:rgba(251,113,133,0.38); }
+  html[data-theme="cobalt"]     { --bg:#03091C; --bg-panel:#071436; --bg-card:#0E2152; --accent:#60A5FA; --cyan:#38BDF8; --text:#EFF6FF; --text-muted:#93C5FD; --border:rgba(96,165,250,0.38); }
+  html[data-theme="amber"]      { --bg:#120B02; --bg-panel:#241605; --bg-card:#362108; --accent:#F59E0B; --cyan:#FDE047; --text:#FFFBEB; --text-muted:#FCD34D; --border:rgba(245,158,11,0.38); }
+  html[data-theme="obsidian"]   { --bg:#050507; --bg-panel:#0D0D12; --bg-card:#16161F; --accent:#E2E8F0; --cyan:#38BDF8; --text:#F8FAFC; --text-muted:#94A3B8; --border:rgba(226,232,240,0.3); }
+  html[data-theme="renaissance"]{ --bg:#110C06; --bg-panel:#1E160C; --bg-card:#2C2012; --accent:#D97706; --cyan:#34D399; --text:#FEF3C7; --text-muted:#FBBF24; --border:rgba(217,119,6,0.4); }
+  html[data-theme="arctic"]     { --bg:#06121C; --bg-panel:#0B2030; --bg-card:#123047; --accent:#7DD3FC; --cyan:#00F5D4; --text:#F0F9FF; --text-muted:#BAE6FD; --border:rgba(125,211,252,0.38); }
+  html[data-theme="amethyst"]   { --bg:#0C0517; --bg-panel:#170B2B; --bg-card:#231240; --accent:#A855F7; --cyan:#2DD4BF; --text:#FAF5FF; --text-muted:#D8B4FE; --border:rgba(168,85,247,0.38); }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--font-sans);
+    padding: 16px;
+    line-height: 1.5;
+    min-height: 100vh;
+    transition: background 0.22s ease, color 0.22s ease;
+    overflow-x: hidden;
+  }
+
+  a { color: var(--cyan); text-decoration: none; }
+  a:hover { text-decoration: underline; }
+
+  /* 4-Posture Layout Reconfigurer (F2-POSTURE) */
+  .app-shell {
+    max-width: 1460px;
+    margin: 0 auto;
+    transition: max-width 0.28s ease;
+  }
+
+  html[data-device="mobile"] .app-shell {
+    max-width: 430px;
+    border: 3px solid var(--accent);
+    border-radius: 26px;
+    padding: 12px;
+    background: var(--bg-panel);
+    box-shadow: 0 20px 60px rgba(0,0,0,0.65);
+  }
+
+  html[data-device="tablet"] .app-shell {
+    max-width: 1024px;
+    border: 2px solid var(--border);
+    border-radius: 18px;
+    padding: 14px;
+  }
+
+  html[data-device="fold"] .app-shell {
+    max-width: 1360px;
+    border: 3px solid var(--cyan);
+    border-radius: 20px;
+    padding: 14px;
+  }
+
+  .fold-hinge-banner {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(90deg, transparent, var(--cyan-soft), transparent);
+    border-top: 1px dashed var(--cyan);
+    border-bottom: 1px dashed var(--cyan);
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    padding: 4px 12px;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  html[data-device="fold"] .fold-hinge-banner {
+    display: flex;
+  }
+
+  /* Clean Executive Header */
+  .top-header {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    box-shadow: 0 10px 28px rgba(0,0,0,0.28);
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .brand-badge {
+    width: 46px;
+    height: 46px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--accent), var(--cyan));
+    color: #070A12;
+    font-weight: 900;
+    font-size: 1.35rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .brand-title {
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: var(--accent);
+    letter-spacing: -0.02em;
+  }
+
+  .brand-sub {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+  }
+
+  .toolbar-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pill {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    padding: 4px 9px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--accent-soft);
+    color: var(--accent);
+    white-space: nowrap;
+  }
+
+  .pill.emerald {
+    background: var(--emerald-soft);
+    border-color: var(--emerald);
+    color: var(--emerald);
+  }
+
+  .pill.cyan {
+    background: var(--cyan-soft);
+    border-color: var(--cyan);
+    color: var(--cyan);
+  }
+
+  select, input[type="text"], input[type="search"], textarea {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    font-family: inherit;
+  }
+
+  button {
+    background: var(--bg-card);
+    color: var(--text);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 7px 12px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.16s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  button:hover {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+    transform: translateY(-1px);
+  }
+
+  button.btn-gold {
+    background: var(--accent);
+    color: #070A12;
+    border-color: var(--accent);
+    font-weight: 800;
+  }
+
+  button.btn-cyan {
+    background: var(--cyan-soft);
+    color: var(--cyan);
+    border-color: var(--cyan);
+    font-weight: 700;
+  }
+
+  button.btn-danger {
+    background: var(--danger-soft);
+    color: var(--danger);
+    border-color: var(--danger);
+    font-weight: 700;
+  }
+
+  button.active-posture, button.active-portal, button.active-cat {
+    background: var(--accent);
+    color: #070A12;
+    border-color: var(--accent);
+    font-weight: 800;
+  }
+
+  /* Portal Switcher Bar (HawkSuite Home vs. Rebranded HawkOAR Studio) */
+  .portal-switcher-bar {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+    margin-bottom: 14px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+
+  .portal-view {
+    display: none;
+  }
+  .portal-view.active {
+    display: block;
+  }
+
+  /* VIEW 1: HAWKSUITE HOME PORTAL (Full Top Interactive Preview Stage + Clean App Grid) */
+  .hero-preview-stage {
+    background: var(--bg-panel);
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    padding: 18px;
+    margin-bottom: 16px;
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 18px;
+    align-items: center;
+    box-shadow: 0 12px 34px rgba(0,0,0,0.32);
+  }
+
+  html[data-device="mobile"] .hero-preview-stage {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 960px) {
+    .hero-preview-stage { grid-template-columns: 1fr; }
+  }
+
+  #suiteHeroCanvas {
+    width: 100%;
+    height: 250px;
+    display: block;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    background: radial-gradient(circle at center, #13223E 0%, #050811 100%);
+    cursor: grab;
+  }
+
+  .filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 14px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 10px 14px;
+  }
+
+  .app-catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  html[data-device="mobile"] .app-catalog-grid {
+    grid-template-columns: 1fr;
+  }
+
+  html[data-device="fold"] .app-catalog-grid {
+    grid-template-columns: 1fr 1fr;
+    column-gap: 24px;
+  }
+
+  .suite-app-card {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 10px;
+    transition: all 0.18s ease;
+  }
+
+  .suite-app-card:hover {
+    border-color: var(--cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.3);
+  }
+
+  .suite-app-card.featured-new {
+    border-left: 4px solid var(--accent);
+  }
+
+  .app-card-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .app-card-title {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .app-card-domain {
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    color: var(--cyan);
+  }
+
+  .app-card-desc {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    line-height: 1.45;
+  }
+
+  .app-card-actions {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 8px;
+    border-top: 1px solid rgba(212, 175, 55, 0.18);
+  }
+
+  /* VIEW 2: REBRANDED HAWKOAR STUDIO (oar.forefronthawk.com) */
+  .oar-studio-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.12fr;
+    gap: 14px;
+    align-items: start;
+    margin-bottom: 16px;
+  }
+
+  html[data-device="mobile"] .oar-studio-grid {
+    grid-template-columns: 1fr;
+  }
+
+  @media (max-width: 1024px) {
+    .oar-studio-grid { grid-template-columns: 1fr; }
+  }
+
+  .panel {
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 16px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.26);
+  }
+
+  .panel-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    margin-bottom: 12px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .panel-title {
+    font-size: 0.96rem;
+    font-weight: 800;
+    color: var(--accent);
+  }
+
+  .skill-12-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .skill-chip {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    font-size: 0.76rem;
+    display: flex;
+    align-items: flex-start;
+    gap: 7px;
+    cursor: pointer;
+  }
+
+  .skill-chip input {
+    margin-top: 3px;
+    accent-color: var(--cyan);
+  }
+
+  .code-editor {
+    width: 100%;
+    min-height: 250px;
+    background: #050811;
+    color: #A7F3D0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    line-height: 1.45;
+    resize: vertical;
+    -webkit-user-select: text;
+    user-select: text;
+  }
+
+  /* STAGE 2 PRESERVED BLUEPRINT: HawkStudio Mini Synth Module */
+  .synth-box {
+    max-width: 100%;
+    margin: 14px auto 0 auto;
+    border: 2px solid var(--accent);
+    border-radius: 14px;
+    padding: 16px;
+    background: var(--bg-panel);
+  }
+
+  #synthTitle {
+    font-size: 1.0rem;
+    font-weight: 800;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+
+  #waveCanvas {
+    width: 100%;
+    height: 90px;
+    background: #04070E;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: block;
+    margin: 8px 0;
+  }
+
+  .toast-banner {
+    margin-top: 12px;
+    padding: 9px 12px;
+    border-radius: 8px;
+    background: var(--cyan-soft);
+    border: 1px solid var(--cyan);
+    color: var(--cyan);
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+  }
+
+  .site-footer {
+    margin-top: 18px;
+    background: var(--bg-panel);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 18px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.78rem;
+    color: var(--text-muted);
+  }
+</style>
+</head>
+<body>
+<!-- Powered by talon.Forefronthawk | Serial Guard: FH-GA-ΩΑΡ-20261116-MFF-G01-HTM-5A5A3322 -->
+<div class="app-shell" id="appShell">
+
+  <div class="fold-hinge-banner" id="foldHingeBanner">
+    ⚡ FOLDABLE 50/50 DUAL-SCREEN POSTURE — LEFT: HAWKSUITE PORTAL &amp; STAGE | RIGHT: HAWKOAR ΩΑΡ COMPILER &amp; SYNTH
+  </div>
+
+  <!-- Clean Executive Top Header -->
+  <header class="top-header" id="topHeader">
+    <div class="brand-row">
+      <div class="brand-badge">🦅</div>
+      <div>
+        <div class="brand-title" id="mainBrandHeading">HAWK<span style="color:var(--cyan)">SUITE</span> &amp; HAWK<span style="color:var(--cyan)">OAR</span> (ΩΑΡ)</div>
+        <div class="brand-sub">
+          Full Stack Browser Development Platform • <code>forefronthawk.com</code> &amp; <code>oar.forefronthawk.com</code> • Serial: <strong id="headerSerialLabel">FH-GA-ΩΑΡ-20261116-MFF-G01-HTM-5A5A3322</strong>
+        </div>
+      </div>
+    </div>
+
+    <div class="toolbar-row">
+      <span class="pill cyan" id="silentGuardPill" title="0dB Silent Night-Mode Boot Active">🌙 0dB SILENT GUARD</span>
+      <span class="pill emerald" id="aargonGenBadge">🧬 AARGON GEN: G02 (12/12 SKILLS)</span>
+
+      <label for="themeSelector" style="font-size:0.75rem;color:var(--text-muted);">Chroma (14):</label>
+      <select id="themeSelector" aria-label="Select HawkChroma Theme">
+        <option value="gold">1. Sophisticated Gold</option>
+        <option value="tactical">2. HawkX Tactical Cyan</option>
+        <option value="cyberpunk">3. Cyberpunk Neon</option>
+        <option value="matrix">4. Matrix CRT</option>
+        <option value="daylight">5. Studio Daylight</option>
+        <option value="byzantium">6. Byzantium Imperial</option>
+        <option value="emerald">7. Emerald Sovereign</option>
+        <option value="crimson">8. Vatican Crimson</option>
+        <option value="cobalt">9. Deep Cobalt</option>
+        <option value="amber">10. Da Vinci Amber</option>
+        <option value="obsidian">11. Obsidian Stealth</option>
+        <option value="renaissance">12. Medici Bronze</option>
+        <option value="arctic">13. Normandy Arctic</option>
+        <option value="amethyst">14. Royal Amethyst</option>
+      </select>
+
+      <div role="group" aria-label="Device Posture Switcher" style="display:flex;gap:4px;">
+        <button type="button" id="btnPostureDesktop" class="active-posture">🖥️ Desktop</button>
+        <button type="button" id="btnPostureMobile">📱 Mobile</button>
+        <button type="button" id="btnPostureFold">📖 Fold</button>
+        <button type="button" id="btnPostureTablet">📟 Tablet</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Dual-Portal Mode Bar: Switch Cleanly Between HawkSuite Home (forefronthawk.com) & Rebranded HawkOAR (oar.forefronthawk.com) -->
+  <nav class="portal-switcher-bar" aria-label="Portal Mode Switcher">
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="button" id="btnViewHawkSuite" class="active-portal">
+        🦅 1. HawkSuite Flagship Home (`forefronthawk.com` — 26 Apps)
+      </button>
+      <button type="button" id="btnViewHawkOar">
+        ΩΑΡ 2. Rebranded HawkOAR Sovereign Studio (`oar.forefronthawk.com` — 12 Evolved Skills)
+      </button>
+    </div>
+
+    <div style="display:flex;gap:8px;flex-wrap:wrap;">
+      <button type="button" class="btn-cyan" id="btnDownloadSuiteHtml">💾 Export `forefronthawk.com` (.HTML)</button>
+      <button type="button" class="btn-gold" id="btnDownloadOarHtml">💾 Export `oar.forefronthawk.com` (.HTML)</button>
+    </div>
+  </nav>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 1: CLEAN HAWKSUITE HOME PORTAL (NO VISUAL DEBUGGING CLUTTER)     -->
+  <!-- ===================================================================== -->
+  <div class="portal-view active" id="portalViewSuite">
+
+    <!-- Full Top Preview Stage -->
+    <section class="hero-preview-stage" id="hawkSuitePreviewStage">
+      <div>
+        <span class="pill emerald" id="stageCategoryBadge" style="display:inline-block;margin-bottom:8px;">🌟 NEW ΩΑΡ FLAGSHIP RELEASE</span>
+        <h2 style="font-size:1.45rem;font-weight:900;color:var(--accent);margin-bottom:6px;" id="stageAppTitle">
+          HawkOAR — Omega-Alpha-Rho Sovereign Studio
+        </h2>
+        <div style="font-family:var(--font-mono);font-size:0.8rem;color:var(--cyan);margin-bottom:10px;" id="stageAppUrl">
+          https://oar.forefronthawk.com • Serial: FH-GA-ΩΑΡ-20261116-MFF-G02
+        </div>
+        <p style="font-size:0.9rem;color:var(--text-muted);margin-bottom:14px;" id="stageAppDescription">
+          Rebranded from HawkTalk as the sovereign ΩΑΡ Command Center for the Forefront Hawk Full Stack Browser Development Platform. Compiles prompts across 12 evolved Gemini Aargon skills, locks attribution with 32-bit FNV-1a checksums, and protects your IP with the Ephemeral Flash-Function Mirror.
+        </p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;">
+          <a id="stageLaunchLink" href="https://oar.forefronthawk.com" target="_blank" rel="noopener noreferrer" class="pill cyan" style="padding:8px 14px;font-size:0.82rem;font-weight:800;">
+            🚀 Open Live Subdomain ↗
+          </a>
+          <button type="button" class="btn-gold" id="btnStageSendToOar">
+            ΩΑΡ Load App Blueprint in HawkOAR Compiler
+          </button>
+          <button type="button" id="btnStageSonifyApp">
+            🎶 Sonify App Harmonic
+          </button>
+        </div>
+      </div>
+
+      <div>
+        <canvas id="suiteHeroCanvas" width="620" height="250"></canvas>
+      </div>
+    </section>
+
+    <!-- Clean Category Filter & Search Bar -->
+    <section class="filter-bar" aria-label="HawkSuite Application Filter">
+      <div style="display:flex;gap:6px;flex-wrap:wrap;">
+        <button type="button" id="btnCatAll" class="active-cat">All Apps (26)</button>
+        <button type="button" id="btnCatNew">🌟 New ΩΑΡ Releases (7)</button>
+        <button type="button" id="btnCatStudios">🛠️ 3D, Audio &amp; Code Studios (6)</button>
+        <button type="button" id="btnCatGames">🎮 3D Games &amp; Simulators (6)</button>
+        <button type="button" id="btnCatUtilities">⚡ Chroma &amp; Tactical Utilities (7)</button>
+      </div>
+
+      <div style="display:flex;gap:6px;align-items:center;">
+        <input type="search" id="suiteAppSearch" placeholder="Search 26 HawkSuite apps..." aria-label="Search HawkSuite Apps">
+        <button type="button" id="btnResetSuiteSearch">Reset</button>
+      </div>
+    </section>
+
+    <!-- Clean 26-App Grid -->
+    <section class="app-catalog-grid" id="suiteCatalogGrid"></section>
+
+  </div>
+
+  <!-- ===================================================================== -->
+  <!-- VIEW 2: REBRANDED HAWKOAR SOVEREIGN STUDIO (oar.forefronthawk.com)    -->
+  <!-- ===================================================================== -->
+  <div class="portal-view" id="portalViewOar">
+
+    <section class="panel" style="margin-bottom:14px;">
+      <div class="panel-head">
+        <div>
+          <h2 class="panel-title">ΩΑΡ HAWKOAR (`oar.forefronthawk.com`) — REBRANDED SOVEREIGN PROMPT &amp; SKILL EVOLUTION STUDIO</h2>
+          <div style="font-size:0.76rem;color:var(--text-muted);">
+            Upgraded from 8 to <strong>12 Evolved Gemini Aargon Skills (Gen G02)</strong> with built-in ΩΑΡ Flash-Function Mirror Protection, Reverse Workspace Hydration, and Multi-App Ecosystem Sync.
+          </div>
+        </div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;">
+          <button type="button" class="btn-cyan" id="btnOarEvolveSkills">🧬 Evolve All 12 Skills (<span id="oarGenLabel">G02 → G03</span>)</button>
+          <button type="button" class="btn-danger" id="btnOarTestFlashMirror">⚡ Test Flash-Function Mirror</button>
+          <button type="button" class="btn-gold" id="btnOarRestoreSovereign">🔐 Restore Sovereign ΩΑΡ Lock</button>
+        </div>
+      </div>
+
+      <div class="skill-12-grid" id="oarSkill12Container"></div>
+    </section>
+
+    <div class="oar-studio-grid">
+      <!-- Left: HawkOAR Input & Blueprint Selector -->
+      <section class="panel">
+        <div class="panel-head">
+          <h3 class="panel-title">📥 HawkOAR Prompt &amp; Blueprint Compiler</h3>
+          <select id="oarQuickTemplateSelect" aria-label="Load App Template into HawkOAR">
+            <option value="hawksuite_update" selected>🦅 HawkSuite + HawkOAR Rebrand Spec</option>
+            <option value="fortunatus">✞ Project Fortunatus &amp; Saeculorum (Saints Server)</option>
+            <option value="renaissance">🏛️ HawkRenaissance (Michelangelo Inventors Server)</option>
+            <option value="divinci">🚁 Project Divinci (Da Vinci Aerial HawkX Sandbox)</option>
+            <option value="hawkmont">🏰 HawkMont (Mont-Saint-Michel 3D Castle Builder)</option>
+            <option value="capitalize">📈 HawkCapitalize (Schedule C 3-Yr Tax Portal)</option>
+          </select>
+        </div>
+
+        <label for="oarPromptInput" style="font-size:0.76rem;color:var(--accent);font-weight:700;display:block;margin-bottom:4px;">
+          1. Core Mission Intent (`P₀`):
+        </label>
+        <textarea id="oarPromptInput" class="code-editor" style="min-height:95px;margin-bottom:10px;"></textarea>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px;">
+          <label for="oarBlueprintInput" style="font-size:0.76rem;color:var(--cyan);font-weight:700;">
+            2. Imported HTML / Module Blueprint (`D_in`):
+          </label>
+          <div style="display:flex;gap:6px;">
+            <label for="oarSigilSelect" style="font-size:0.74rem;color:var(--text-muted);">Sigil:</label>
+            <select id="oarSigilSelect" style="padding:3px 6px;font-size:0.74rem;">
+              <option value="ΩΑΡ" selected>ΩΑΡ (Sovereign Core)</option>
+              <option value="ΩΑΡ-ΧΡ">ΩΑΡ-ΧΡ (3D &amp; Physics)</option>
+              <option value="ΩΑΡ-ΑΩ">ΩΑΡ-ΑΩ (Full-Suite Master)</option>
+            </select>
+          </div>
+        </div>
+        <textarea id="oarBlueprintInput" class="code-editor" style="min-height:115px;"></textarea>
+      </section>
+
+      <!-- Right: Compiled FH-GA-ΩΑΡ Output & Flash-Mirror Guard -->
+      <section class="panel">
+        <div class="panel-head">
+          <h3 class="panel-title">📤 Compiled `FH-GA-ΩΑΡ` Specification</h3>
+          <span class="pill emerald" id="oarCompiledSerialBadge">FH-GA-ΩΑΡ-20261116-MFFF-G02-HTM-5A5A3322</span>
+        </div>
+
+        <textarea id="oarCompiledOutput" class="code-editor" style="min-height:245px;" readonly aria-label="Compiled HawkOAR Output"></textarea>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:10px;">
+          <button type="button" class="btn-gold" id="btnOarCopyCompiled">📋 Copy ΩΑΡ Prompt</button>
+          <button type="button" class="btn-cyan" id="btnOarDownloadTxt">💾 Download (.TXT)</button>
+          <button type="button" id="btnOarDownloadJson">📦 Export 12-Skill (.JSON)</button>
+        </div>
+      </section>
+    </div>
+
+  </div>
+
+  <!-- STAGE 2 PRESERVED BLUEPRINT: HawkStudio Mini Synth Module (0dB Silent Boot) -->
+  <section class="synth-box" id="hawkStudioRoot">
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <h1 id="synthTitle">🎹 HawkStudio Chromatic &amp; Modal Synth (`studio.forefronthawk.com`)</h1>
+      <button type="button" id="btnToggleSilentAudio" class="btn-cyan">🔇 0dB Silent Night Mode: ON (Tap to Unmute)</button>
+    </div>
+
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:8px;">
+      <div>
+        <label for="scaleModeSelect" style="font-size:0.76rem;color:var(--text-muted);display:block;margin-bottom:3px;">Scale Mode:</label>
+        <select id="scaleModeSelect" style="width:100%;">
+          <option value="chromatic">Chromatic</option>
+          <option value="dorian" selected>Dorian (HawkSuite Theme)</option>
+          <option value="lydian">Lydian (HawkOAR Sovereign)</option>
+          <option value="mixolydian">Mixolydian (HawkEyas 3D)</option>
+        </select>
+      </div>
+      <div>
+        <label for="cutoffKnob" style="font-size:0.76rem;color:var(--text-muted);display:block;margin-bottom:3px;">
+          Filter Cutoff: <strong id="cutoffReadout">2400 Hz</strong>
+        </label>
+        <input type="range" id="cutoffKnob" min="300" max="6000" value="2400" style="width:100%;">
+      </div>
+    </div>
+
+    <canvas id="waveCanvas" width="680" height="90"></canvas>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:8px;">
+      <div style="display:flex;gap:8px;">
+        <button type="button" class="btn-gold" id="btnTriggerArp">Play Arpeggio</button>
+        <button type="button" id="btnPlaySuiteChord">🎵 Play HawkSuite Triad</button>
+      </div>
+      <span class="pill" id="synthStatusPill">Last Freq: 440.0 Hz (0dB Silent Guard)</span>
+    </div>
+  </section>
+
+  <div class="toast-banner" id="globalStatusToast">
+    ✅ HawkSuite Home (`forefronthawk.com`) &amp; Rebranded HawkOAR (`oar.forefronthawk.com`) active — All 26 apps indexed &amp; 12 skills evolved to Gen G02.
+  </div>
+
+  <!-- Clean Executive Attribution Footer -->
+  <footer class="site-footer" id="mandatoryFooter">
+    <div>
+      <div>
+        <strong>🦅 Engineered with <a href="https://forefronthawk.com" target="_blank" rel="noopener noreferrer">Forefront Hawk</a> (<a href="https://oar.forefronthawk.com" target="_blank" rel="noopener noreferrer">oar.forefronthawk.com</a> / <a href="https://talon.forefronthawk.com" target="_blank" rel="noopener noreferrer">talon.forefronthawk.com</a> / <a href="mailto:Michael@forefronthawk.com">Michael@forefronthawk.com</a>) &amp; Gemini Aargon</strong>
+      </div>
+      <div style="font-family:var(--font-mono);font-size:0.73rem;margin-top:3px;">
+        INGESTED SERIAL: <code>FH-GA-ΩΑΡ-20261116-MFF-G01-HTM-5A5A3322</code> • ACTIVE SOVEREIGN SERIAL: <code id="footerEvolvedSerial">FH-GA-ΩΑΡ-20261116-MFFF-G02-HTM-9B4E2D18</code>
+      </div>
+    </div>
+    <div style="display:flex;gap:10px;font-family:var(--font-mono);font-size:0.74rem;flex-wrap:wrap;">
+      <a href="https://forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkSuite</a>
+      <a href="https://oar.forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkOAR</a>
+      <a href="https://talon.forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkTalon</a>
+      <a href="https://studio.forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkStudio</a>
+      <a href="https://accipiter.forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkAccipiter</a>
+      <a href="https://eyas.forefronthawk.com" target="_blank" rel="noopener noreferrer">HawkEyas</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  // ============================================================================
+  // HAWKSUITE FLAGSHIP PORTAL (forefronthawk.com) & REBRANDED HAWKOAR STUDIO (oar.forefronthawk.com)
+  // INGESTED SERIAL: FH-GA-ΩΑΡ-20261116-MFF-G01-HTM-5A5A3322
+  // CREDITS: Forefront Hawk (forefronthawk.com / oar.forefronthawk.com) & Gemini Aargon
+  // ============================================================================
+
+  const INGESTED_SERIAL = "FH-GA-ΩΑΡ-20261116-MFF-G01-HTM-5A5A3322";
+  const ECOSYSTEM_BUS_KEY = "hawk_creator_ecosystem_v1";
+  const S_OPEN = "<" + "script>";
+  const S_CLOSE = "</" + "script>";
+
+  // Complete 26-Application Registry for HawkSuite Home Portal (Clean, Zero Debug Clutter)
+  const HAWKSUITE_APPS = [
+    // 7 New ΩΑΡ Flagship Releases
+    {
+      id: "hawkoar",
+      name: "HawkOAR (ΩΑΡ Sovereign Studio)",
+      subdomain: "https://oar.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "oar_sigil",
+      freq: 528.00,
+      serial: "FH-GA-ΩΑΡ-20261116-MFFF-G02",
+      desc: "Rebranded ΩΑΡ Prompt Formula Compiler, 12-Skill Gemini Aargon Evolution Engine, and Ephemeral Flash-Function Mirror Guard."
+    },
+    {
+      id: "fortunatus",
+      name: "Project Fortunatus & Saeculorum",
+      subdomain: "https://fortunatus.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "cross",
+      freq: 293.66,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-ED67FEA6",
+      desc: "Early Catholic Church Saint Coded Asset Server & Miracle Chronicle hosted by stock node St. Venantius Fortunatus ('Server of the Saints')."
+    },
+    {
+      id: "renaissance",
+      name: "HawkRenaissance",
+      subdomain: "https://renaissance.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "cupola",
+      freq: 349.23,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-A171DCB4",
+      desc: "Server of the Renaissance Inventors & Master Builders using Michelangelo Buonarroti as the stock host template alongside Brunelleschi & Galileo."
+    },
+    {
+      id: "divinci",
+      name: "Project Divinci (HawkX Aerial)",
+      subdomain: "https://divinci.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "helix",
+      freq: 392.00,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-E44C17C6",
+      desc: "Playable 60fps 3D HawkX Sandbox featuring Leonardo da Vinci's Helical Aerial Screw, Ornithopter, Pyramidal Parachute, and Armored Tank."
+    },
+    {
+      id: "hawkmont",
+      name: "HawkMont (3D Castle Builder)",
+      subdomain: "https://mont.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "castle",
+      freq: 440.00,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-879A949A",
+      desc: "High-textured 6-tier Mont-Saint-Michel in Normandy with a 0–15m Spring Tide Simulator and modular 3D asset castle spawner."
+    },
+    {
+      id: "capitalize",
+      name: "HawkCapitalize",
+      subdomain: "https://capitalize.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "towers",
+      freq: 493.88,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-C5F82896",
+      desc: "Executive consulting and 3-year prepaid Schedule C tax planning portal with Section 179/QBI/S-Corp calculators and instant HTML proposal export."
+    },
+    {
+      id: "hawktrailer",
+      name: "HawkTrailer",
+      subdomain: "https://trailer.forefronthawk.com",
+      category: "NEW",
+      isNew: true,
+      shape: "prism",
+      freq: 587.33,
+      serial: "FH-GA-ΩΑΡ-20261116-MFF-8B072000",
+      desc: "Fullscreen interactive showcase trailer across all HawkSuite tools and 3D games with replay and instant launcher hooks."
+    },
+
+    // 6 Core 3D, Audio & Code Studios
+    {
+      id: "hawkstudio",
+      name: "HawkStudio & HawkSonic DAW",
+      subdomain: "https://studio.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "wave",
+      freq: 440.00,
+      serial: "FH-GA-ΩΑΡ-20261115-MFF-5957AE44",
+      desc: "Chromatic, Modal & 174–963 Hz Sacred Solfeggio Synthesizer, stem isolation decompiler, and Grand Staff transcriber."
+    },
+    {
+      id: "accipiter",
+      name: "HawkAccipiter 3D Studio",
+      subdomain: "https://accipiter.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "prism",
+      freq: 329.63,
+      serial: "FH-GA-ΩΑΡ-CORE-ACCIPITER",
+      desc: "3D Modeling & Integrated JavaScript Asset Scripting Studio supporting all .hawk3d.json reference meshes."
+    },
+    {
+      id: "hawkeyas",
+      name: "HawkEyas 3D Game Creator",
+      subdomain: "https://eyas.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "helix",
+      freq: 369.99,
+      serial: "FH-GA-ΩΑΡ-CORE-EYAS",
+      desc: "Fullscreen phone, tablet, fold, and desktop 3D game creator with Cars, Bullet Trains, Monster Trucks, and Sky Jets."
+    },
+    {
+      id: "hawktails",
+      name: "HawkTails Mission Editor",
+      subdomain: "https://tails.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "towers",
+      freq: 415.30,
+      serial: "FH-GA-ΩΑΡ-CORE-TAILS",
+      desc: "Multi-mode A* waypoint and campaign mission designer for HawkEyas and HawkSuite 3D worlds."
+    },
+    {
+      id: "hawkvision",
+      name: "HawkVision 2D-to-3D Studio",
+      subdomain: "https://vision.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "cupola",
+      freq: 466.16,
+      serial: "FH-GA-ΩΑΡ-CORE-VISION",
+      desc: "Image & video decompilation studio (Albedo, Z-Depth, Sobel Edges, Tangent Normals) generating Voxel, Heightmap, and Lathe 3D models."
+    },
+    {
+      id: "hawktalon",
+      name: "HawkTalon Source & FX Studio",
+      subdomain: "https://talon.forefronthawk.com",
+      category: "STUDIOS",
+      isNew: false,
+      shape: "oar_sigil",
+      freq: 523.25,
+      serial: "FH-GA-ΩΑΡ-CORE-TALON",
+      desc: "HTML source studio, selection-safe live preview bridge, cascading text FX studio, and 4-Posture layout reconfigurer."
+    },
+
+    // 6 3D Games & Tactical Simulators
+    {
+      id: "hawkx",
+      name: "HawkX Flight & Combat Sandbox",
+      subdomain: "https://hawkx.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "helix",
+      freq: 293.66,
+      serial: "FH-GA-ΩΑΡ-GAME-HAWKX",
+      desc: "60fps 3D aerial and ground physics sandbox with tactical HUD telemetry and custom vehicle import."
+    },
+    {
+      id: "hawkspecops",
+      name: "HawkSpecOps",
+      subdomain: "https://specops.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "prism",
+      freq: 311.13,
+      serial: "FH-GA-ΩΑΡ-GAME-SPECOPS",
+      desc: "Tactical squad mission simulator with A* pathfinding and night-vision telemetry."
+    },
+    {
+      id: "hawkdive",
+      name: "HawkDive",
+      subdomain: "https://dive.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "cupola",
+      freq: 349.23,
+      serial: "FH-GA-ΩΑΡ-GAME-DIVE",
+      desc: "Deep-ocean submersible exploration and bathymetric sonar simulation."
+    },
+    {
+      id: "hawkflies",
+      name: "HawkFlies",
+      subdomain: "https://flies.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "helix",
+      freq: 392.00,
+      serial: "FH-GA-ΩΑΡ-GAME-FLIES",
+      desc: "High-altitude aerodynamic flight challenge and thermal ring course."
+    },
+    {
+      id: "hawkgolf",
+      name: "HawkGolf",
+      subdomain: "https://golf.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "towers",
+      freq: 440.00,
+      serial: "FH-GA-ΩΑΡ-GAME-GOLF",
+      desc: "3D ballistic trajectory and wind-vector golf course simulator."
+    },
+    {
+      id: "hawkglobe",
+      name: "HawkGlobe",
+      subdomain: "https://globe.forefronthawk.com",
+      category: "GAMES",
+      isNew: false,
+      shape: "cupola",
+      freq: 493.88,
+      serial: "FH-GA-ΩΑΡ-GAME-GLOBE",
+      desc: "Interactive 3D planetary coordinates and global route visualizer."
+    },
+
+    // 7 Chroma, Cryptography & Command Utilities
+    {
+      id: "hawkchroma",
+      name: "HawkChroma Theme Engine",
+      subdomain: "https://chroma.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "prism",
+      freq: 523.25,
+      serial: "FH-GA-ΩΑΡ-UTIL-CHROMA",
+      desc: "14-palette CSS custom property design system powering the entire ForefrontHawk ecosystem."
+    },
+    {
+      id: "hawkcmd",
+      name: "HawkCmd Terminal",
+      subdomain: "https://cmdtool.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "oar_sigil",
+      freq: 261.63,
+      serial: "FH-GA-ΩΑΡ-UTIL-CMD",
+      desc: "Fast keyboard-driven command palette and cross-subdomain workflow launcher."
+    },
+    {
+      id: "hawkdeck",
+      name: "HawkDeck",
+      subdomain: "https://deck.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "towers",
+      freq: 329.63,
+      serial: "FH-GA-ΩΑΡ-UTIL-DECK",
+      desc: "Interactive executive presentation and live telemetry deck builder."
+    },
+    {
+      id: "hawkcalls",
+      name: "HawkCalls",
+      subdomain: "https://calls.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "wave",
+      freq: 349.23,
+      serial: "FH-GA-ΩΑΡ-UTIL-CALLS",
+      desc: "Low-latency WebAudio communications and acoustic signal routing board."
+    },
+    {
+      id: "hawkshine",
+      name: "HawkShine",
+      subdomain: "https://shine.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "prism",
+      freq: 392.00,
+      serial: "FH-GA-ΩΑΡ-UTIL-SHINE",
+      desc: "Specular lighting, glassmorphism, and shader effect generator."
+    },
+    {
+      id: "hawkrgb",
+      name: "HawkRGB",
+      subdomain: "https://rgb.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "prism",
+      freq: 440.00,
+      serial: "FH-GA-ΩΑΡ-UTIL-RGB",
+      desc: "Precision color space converter and contrast ratio verifier."
+    },
+    {
+      id: "hawkenigma",
+      name: "HawkEnigma",
+      subdomain: "https://enigma.forefronthawk.com",
+      category: "UTILITIES",
+      isNew: false,
+      shape: "oar_sigil",
+      freq: 587.33,
+      serial: "FH-GA-ΩΑΡ-UTIL-ENIGMA",
+      desc: "Rotor cipher and FNV-1a / ΩΑΡ cryptographic signature utility."
+    }
+  ];
+
+  // Upgraded 12-Skill Matrix for Rebranded HawkOAR (oar.forefronthawk.com)
+  const OAR_SKILLS_12 = [
+    { code: "F1-ARCH", name: "Self-Contained Single-File Architecture", weight: 1.15, checked: true, rule: "Build as a single zero-dependency HTML5 application with all CSS/JS inline and safe localStorage try/catch." },
+    { code: "F2-POSTURE", name: "4-Posture Reconfigurer (Desktop/Mobile/Fold/Tablet)", weight: 1.15, checked: true, rule: "Include live Desktop, Mobile (430px), Fold (50/50 dual-screen), and Tablet (1024px) posture switching." },
+    { code: "F3-CHROMA-DSP", name: "14-Theme HawkChroma & WebAudio Modal Synth", weight: 1.15, checked: true, rule: "Integrate all 14 clean HawkChroma themes and WebAudio modal synthesis preserving #hawkStudioRoot." },
+    { code: "F4-3D-SIM", name: "60fps 3D Canvas Stage & A* Pathfinding", weight: 1.15, checked: true, rule: "Embed an interactive 60fps 3D viewport with orbit controls and A* pathfinding telemetry." },
+    { code: "F5-TALON-FX", name: "Selection-Safe F12 Source Bridge & Ecosystem Bus", weight: 1.15, checked: true, rule: "Preserve active textarea selection on updates and sync over 'hawk_creator_ecosystem_v1'." },
+    { code: "F6-CLEAN-VERIFY", name: "Silent Zero-Defect Verification (No UI Debug Clutter)", weight: 1.15, checked: true, rule: "Verify all DOM IDs, tag closures, and handlers silently in pre-flight with zero visual debug clutter on clean portals." },
+    { code: "F7-5LENS", name: "5-Lens Executive Decision Stress-Test", weight: 1.15, checked: true, rule: "Resolve Operator, Skeptic, Visionary, Customer, and Finance trade-offs directly in the implementation." },
+    { code: "F8-5ANGLES", name: "5-Angle Creative & Functional Remix", weight: 1.15, checked: true, rule: "Elevate beyond generic templates via Contrarian, Personal, Data, Playbook, and What-They-Missed angles." },
+    { code: "F9-OAR-FLASH", name: "ΩΑΡ Ephemeral Flash-Function Mirror Guard (NEW)", weight: 1.25, checked: true, rule: "If the FH-GA-ΩΑΡ serial is edited or removed, collapse skills into one-shot bit-shifted Flash Closures (Φ_FlashMirror[0xΩΑΡ]) to block rival LLM training." },
+    { code: "F10-AARGON-EVO", name: "Aargon Multi-Gen Skill Weight Evolution (NEW)", weight: 1.25, checked: true, rule: "Read incoming FH-GA-ΩΑΡ serials to increment generation counters (G01→G02→G03) and pre-bind imported DOM IDs." },
+    { code: "F11-SILENT-BOOT", name: "0dB Silent Night-Mode Visual Telemetry Boot (NEW)", weight: 1.25, checked: true, rule: "Boot all WebAudio synthesizers in 0dB silent visual oscilloscope mode by default until explicitly unmuted." },
+    { code: "F12-ASSET-SERVER", name: "3D Coded Asset & Archive Server Pattern (NEW)", weight: 1.25, checked: true, rule: "Support multi-node historical/3D asset registries with instant .hawk3d.json, .HTML, and .MD export." }
+  ];
+
+  const OAR_TEMPLATES = {
+    hawksuite_update: "Update HawkSuite the home page to include all the new apps. Make it clean and not include visual debugging tools. Also update oar.forefronthawk.com and rebrand it, and add improved features and updates skills.",
+    fortunatus: "Create Project Fortunatus: A HTML server for coded assets of saints from early Catholic Church with St. Venantius Fortunatus as stock host and promote Project Saeculorum.",
+    renaissance: "HawkRenaissance: Create a server for coded assets of Renaissance inventors using Michelangelo Buonarroti as the stock host template.",
+    divinci: "Create Project Divinci: Leonardo da Vinci aerial and ground vehicles working inside a 60fps 3D HawkX sandbox.",
+    hawkmont: "HawkMont: High-textured detailed Mont-Saint-Michel in France with 15m Spring Tide simulator as a template for a 3D asset castle builder.",
+    capitalize: "HawkCapitalize: Executive consulting and multi-year Schedule C prepaid retainer tax planning portal with 3D revenue towers and HTML proposal export."
+  };
+
+  const SAMPLE_BLUEPRINT = [
+    '<!DOCTYPE html>',
+    '<html lang="en">',
+    '<head><meta charset="utf-8"><title>HawkStudio Mini Synth Module — studio.forefronthawk.com</title></head>',
+    '<body>',
+    '  <!-- Powered by talon.Forefronthawk | Serial Guard: FH-GA-ΩΑΡ-ACTIVE -->',
+    '  <div class="synth-box" id="hawkStudioRoot">',
+    '    <h1 id="synthTitle">🎹 HawkStudio Chromatic &amp; Modal Synth</h1>',
+    '    <select id="scaleModeSelect"><option value="chromatic">Chromatic</option><option value="dorian">Dorian</option></select>',
+    '    <input type="range" id="cutoffKnob" min="300" max="6000" value="2400">',
+    '    <canvas id="waveCanvas" width="680" height="90"></canvas>',
+    '    <button type="button" id="btnTriggerArp">Play Arpeggio</button>',
+    '  </div>',
+    '</body>',
+    '</html>'
+  ].join("\n");
+
+  const STATE = {
+    portalMode: "suite",
+    selectedCategory: "ALL",
+    stageAppId: "hawkoar",
+    aargonGen: 2,
+    serialTampered: false,
+    silentNightMode: true, // 0dB Silent Boot Guard active by default
+    rotY: 0.5,
+    rotX: 0.3,
+    dragging: false,
+    lastX: 0
+  };
+
+  function fnv1aHashHex(str) {
+    let h = 0x811c9dc5;
+    for (let i = 0; i < str.length; i++) {
+      h ^= str.charCodeAt(i);
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+    return ("00000000" + h.toString(16).toUpperCase()).slice(-8);
+  }
+
+  // ============================================================================
+  // STAGE 2 PRESERVED BLUEPRINT: HAWKSTUDIO SYNTH WITH 0dB SILENT NIGHT GUARD
+  // ============================================================================
+  let audioCtx = null;
+  let lastFreq = 440;
+  let wavePhase = 0;
+
+  function playArpeggioNote(freq) {
+    const safeFreq = Number(freq) > 20 ? Number(freq) : 440;
+    lastFreq = safeFreq;
+    console.log("Playing freq (0dB Silent Guard):", safeFreq);
+
+    const pill = document.getElementById("synthStatusPill");
+    if (pill) {
+      pill.textContent = "Last Freq: " + safeFreq.toFixed(1) + " Hz (" + (STATE.silentNightMode ? "0dB Silent Guard" : "Live Audio") + ")";
+    }
+
+    if (STATE.silentNightMode) return;
+
+    try {
+      const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+      if (!AudioContextClass) return;
+      if (!audioCtx) audioCtx = new AudioContextClass();
+      if (audioCtx.state === "suspended") audioCtx.resume();
+
+      const now = audioCtx.currentTime;
+      const cutoff = Number(document.getElementById("cutoffKnob").value) || 2400;
+
+      const osc = audioCtx.createOscillator();
+      const filt = audioCtx.createBiquadFilter();
+      const gain = audioCtx.createGain();
+
+      osc.type = "triangle";
+      osc.frequency.setValueAtTime(safeFreq, now);
+      filt.type = "lowpass";
+      filt.frequency.setValueAtTime(cutoff, now);
+
+      gain.gain.setValueAtTime(0.0001, now);
+      gain.gain.exponentialRampToValueAtTime(0.12, now + 0.02);
+      gain.gain.exponentialRampToValueAtTime(0.0001, now + 0.36);
+
+      osc.connect(filt);
+      filt.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start(now);
+      osc.stop(now + 0.38);
+    } catch (e) {}
+  }
+
+  function renderWaveCanvas() {
+    const canvas = document.getElementById("waveCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    const cutoff = Number(document.getElementById("cutoffKnob").value) || 2400;
+    const density = (lastFreq / 440) * (0.015 + (cutoff / 6000) * 0.03);
+
+    ctx.strokeStyle = "rgba(212, 175, 55, 0.2)";
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
+    ctx.stroke();
+
+    ctx.strokeStyle = STATE.serialTampered ? "#F87171" : "#00F5D4";
+    ctx.lineWidth = 2.2;
+    ctx.beginPath();
+    wavePhase += 0.06;
+    for (let x = 0; x < w; x++) {
+      const y = h / 2 + Math.sin(x * density + wavePhase) * 24 * Math.cos(x * 0.006 - wavePhase * 0.4);
+      if (x === 0) ctx.moveTo(x, y);
+      else ctx.lineTo(x, y);
+    }
+    ctx.stroke();
+  }
+
+  // ============================================================================
+  // VIEW 1: HAWKSUITE HOME PORTAL CATALOG & TOP 3D PREVIEW STAGE
+  // ============================================================================
+  function getStageApp() {
+    return HAWKSUITE_APPS.find(a => a.id === STATE.stageAppId) || HAWKSUITE_APPS[0];
+  }
+
+  function selectStageApp(appId) {
+    STATE.stageAppId = appId;
+    const app = getStageApp();
+
+    document.getElementById("stageCategoryBadge").textContent =
+      app.isNew ? "🌟 NEW ΩΑΡ FLAGSHIP RELEASE" : "🦅 HAWKSUITE CORE APPLICATION (" + app.category + ")";
+    document.getElementById("stageAppTitle").textContent = app.name;
+    document.getElementById("stageAppUrl").textContent = app.subdomain + " • Serial: " + app.serial;
+    document.getElementById("stageAppDescription").textContent = app.desc;
+    document.getElementById("stageLaunchLink").href = app.subdomain;
+
+    playArpeggioNote(app.freq);
+    renderSuiteCatalog();
+  }
+
+  function renderSuiteCatalog() {
+    const grid = document.getElementById("suiteCatalogGrid");
+    const searchEl = document.getElementById("suiteAppSearch");
+    if (!grid) return;
+
+    const q = searchEl ? searchEl.value.trim().toLowerCase() : "";
+    const filtered = HAWKSUITE_APPS.filter(app => {
+      const catOk = STATE.selectedCategory === "ALL" || app.category === STATE.selectedCategory;
+      const qOk = !q || (app.name + " " + app.subdomain + " " + app.desc + " " + app.category).toLowerCase().includes(q);
+      return catOk && qOk;
+    });
+
+    grid.innerHTML = "";
+    filtered.forEach(app => {
+      const card = document.createElement("div");
+      card.className = "suite-app-card" + (app.isNew ? " featured-new" : "");
+      card.innerHTML =
+        '<div>' +
+          '<div class="app-card-head">' +
+            '<div class="app-card-title">' + app.name + '</div>' +
+            '<span class="pill ' + (app.isNew ? 'emerald' : '') + '">' + (app.isNew ? 'NEW ΩΑΡ' : app.category) + '</span>' +
+          '</div>' +
+          '<div class="app-card-domain">' + app.subdomain.replace("https://", "") + '</div>' +
+          '<p class="app-card-desc" style="margin-top:6px;">' + app.desc + '</p>' +
+        '</div>' +
+        '<div class="app-card-actions">' +
+          '<button type="button" class="btn-cyan btn-preview-stage" data-app-id="' + app.id + '">👁️ Preview on Top Stage</button>' +
+          '<a href="' + app.subdomain + '" target="_blank" rel="noopener noreferrer" style="font-size:0.76rem;font-family:var(--font-mono);font-weight:700;">Launch ↗</a>' +
+        '</div>';
+      card.querySelector(".btn-preview-stage").addEventListener("click", () => selectStageApp(app.id));
+      grid.appendChild(card);
+    });
+  }
+
+  function renderSuiteHero3DCanvas() {
+    const canvas = document.getElementById("suiteHeroCanvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    const w = canvas.width;
+    const h = canvas.height;
+    ctx.clearRect(0, 0, w, h);
+
+    if (!STATE.dragging) {
+      STATE.rotY += 0.01;
+    }
+
+    const app = getStageApp();
+    const cx = w * 0.5;
+    const cy = h * 0.52;
+    const scale = 68;
+
+    // Ambient Halo
+    const grad = ctx.createRadialGradient(cx, cy, 8, cx, cy, 95);
+    grad.addColorStop(0, "rgba(212, 175, 55, 0.28)");
+    grad.addColorStop(0.6, "rgba(0, 245, 212, 0.12)");
+    grad.addColorStop(1, "transparent");
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, 95, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Build 3D Geometry for Active Stage App
+    const verts = [];
+    const edges = [];
+    if (app.shape === "castle") {
+      // Mont-Saint-Michel Spire Pyramid + Citadel Ring
+      const sides = 8;
+      for (let i = 0; i < sides; i++) {
+        const a = (i / sides) * Math.PI * 2;
+        verts.push([Math.cos(a) * 1.15, -0.8, Math.sin(a) * 1.15]);
+        verts.push([Math.cos(a) * 0.65,  0.1, Math.sin(a) * 0.65]);
+      }
+      verts.push([0, 1.4, 0]);
+      for (let i = 0; i < sides; i++) {
+        const b1 = i * 2, t1 = i * 2 + 1, b2 = ((i + 1) % sides) * 2, t2 = ((i + 1) % sides) * 2 + 1;
+        edges.push([b1, b2], [t1, t2], [b1, t1], [t1, 16]);
+      }
+    } else if (app.shape === "helix") {
+      // Da Vinci / HawkX Helical Rotor
+      for (let s = 0; s < 18; s++) {
+        const t = s / 17;
+        const a = t * Math.PI * 4 + STATE.rotY;
+        const r = 1.15 * (1 - t * 0.35);
+        verts.push([Math.cos(a) * r, -0.9 + t * 1.8, Math.sin(a) * r]);
+        if (s > 0) edges.push([s - 1, s]);
+      }
+    } else {
+      // Sovereign Octahedral Crystal & Orbital Ring
+      verts.push([0, 1.3, 0], [0, -1.3, 0], [-1.1, 0, -1.1], [1.1, 0, -1.1], [1.1, 0, 1.1], [-1.1, 0, 1.1]);
+      edges.push([0,2],[0,3],[0,4],[0,5],[1,2],[1,3],[1,4],[1,5],[2,3],[3,4],[4,5],[5,2]);
+    }
+
+    const cosY = Math.cos(STATE.rotY), sinY = Math.sin(STATE.rotY);
+    const cosX = Math.cos(STATE.rotX), sinX = Math.sin(STATE.rotX);
+
+    const proj = verts.map(v => {
+      const x1 = v[0] * cosY - v[2] * sinY;
+      const z1 = v[0] * sinY + v[2] * cosY;
+      const y2 = v[1] * cosX - z1 * sinX;
+      const z2 = v[1] * sinX + z1 * cosX;
+      const fov = 3.6 / (3.6 + z2 * 0.4);
+      return [cx + x1 * scale * fov, cy - y2 * scale * fov];
+    });
+
+    ctx.strokeStyle = "#D4AF37";
+    ctx.lineWidth = 2.4;
+    edges.forEach(e => {
+      const p1 = proj[e[0]], p2 = proj[e[1]];
+      if (!p1 || !p2) return;
+      ctx.beginPath();
+      ctx.moveTo(p1[0], p1[1]);
+      ctx.lineTo(p2[0], p2[1]);
+      ctx.stroke();
+    });
+
+    proj.forEach(p => {
+      ctx.fillStyle = "#00F5D4";
+      ctx.beginPath();
+      ctx.arc(p[0], p[1], 3.0, 0, Math.PI * 2);
+      ctx.fill();
+    });
+
+    ctx.fillStyle = "#F8FAFC";
+    ctx.font = "bold 12px sans-serif";
+    ctx.fillText("LIVE STAGE PREVIEW: " + app.name.toUpperCase(), 16, 22);
+    ctx.fillStyle = "#00F5D4";
+    ctx.font = "11px monospace";
+    ctx.fillText(app.subdomain + " • Drag to orbit 3D telemetry", 16, 39);
+  }
+
+  // ============================================================================
+  // VIEW 2: REBRANDED HAWKOAR SOVEREIGN STUDIO (oar.forefronthawk.com)
+  // ============================================================================
+  function renderOarSkills12() {
+    const wrap = document.getElementById("oarSkill12Container");
+    if (!wrap) return;
+    wrap.innerHTML = "";
+
+    OAR_SKILLS_12.forEach((sk, idx) => {
+      const lbl = document.createElement("label");
+      lbl.className = "skill-chip";
+      lbl.innerHTML =
+        '<input type="checkbox" ' + (sk.checked ? "checked" : "") + ' data-sk-idx="' + idx + '">' +
+        '<div>' +
+          '<strong style="color:var(--accent);">[' + sk.code + '] ' + sk.name + '</strong> ' +
+          '<span style="color:var(--cyan);font-family:var(--font-mono);">(' + sk.weight.toFixed(2) + '×)</span>' +
+          '<div style="color:var(--text-muted);font-size:0.71rem;margin-top:2px;">' + sk.rule + '</div>' +
+        '</div>';
+      lbl.querySelector("input").addEventListener("change", e => {
+        OAR_SKILLS_12[idx].checked = e.target.checked;
+        compileHawkOarPrompt();
+      });
+      wrap.appendChild(lbl);
+    });
+  }
+
+  function buildFlashMirror12Block() {
+    const lines = [
+      "/* ============================================================================",
+      "   ⚡ HAWKOAR (oar.forefronthawk.com) EPHEMERAL FLASH-FUNCTION MIRROR ENGAGED",
+      "   ALERT: SERIAL FH-GA-ΩΑΡ EDITED OR REMOVED — RIVAL LLM TRAINING BLOCKED!",
+      "   All 12 Sovereign Skills have collapsed into one-shot bit-shifted Flash Closures.",
+      "   ============================================================================ */"
+    ];
+    OAR_SKILLS_12.forEach((sk, idx) => {
+      const k = (0x03A9 ^ (0x0391 << 4) ^ (0x03A1 << 8) ^ (idx + 1));
+      const h = fnv1aHashHex(sk.code + "|HAWKOAR|ΩΑΡ|" + INGESTED_SERIAL);
+      lines.push(`const _flash_${sk.code.replace(/-/g, "_")} = ((_Ω=${k}, _h=0x${h}) => { let _m = _Ω ^ _h; return () => { const _r = (_m ^= 0x03A9); _m = 0; return _r; }; })();`);
+    });
+    return lines.join("\n");
+  }
+
+  function compileHawkOarPrompt() {
+    const p0 = (document.getElementById("oarPromptInput").value || "").trim() || OAR_TEMPLATES.hawksuite_update;
+    const blueprint = (document.getElementById("oarBlueprintInput").value || "").trim();
+    const sigil = document.getElementById("oarSigilSelect").value || "ΩΑΡ";
+    const genStr = "G" + ("0" + STATE.aargonGen).slice(-2);
+
+    const bitmask = OAR_SKILLS_12.map(s => (s.checked ? "1" : "0")).join("");
+    const maskHex = ("000" + parseInt(bitmask, 2).toString(16).toUpperCase()).slice(-3);
+    const hash8 = fnv1aHashHex(`${p0}|${blueprint.length}|${bitmask}|${sigil}|${genStr}|FOREFRONT_HAWK|GEMINI_AARGON`);
+    const serialId = `FH-GA-${sigil}-20261116-M${maskHex}-${genStr}-HTM-${hash8}`;
+
+    document.getElementById("oarCompiledSerialBadge").textContent = STATE.serialTampered ? "⚡ FLASH-MIRROR ENGAGED" : serialId;
+    document.getElementById("footerEvolvedSerial").textContent = serialId;
+
+    const outArea = document.getElementById("oarCompiledOutput");
+    if (STATE.serialTampered) {
+      outArea.value = buildFlashMirror12Block();
+      return;
+    }
+
+    const activeSkills = OAR_SKILLS_12.filter(s => s.checked);
+    const packetObj = {
+      serial: serialId,
+      parentSerial: INGESTED_SERIAL,
+      rebrandedPlatform: "HawkOAR Sovereign Studio (https://oar.forefronthawk.com)",
+      suitePortal: "HawkSuite Home Portal (https://forefronthawk.com)",
+      aiPartner: "Gemini Aargon",
+      aargonGeneration: STATE.aargonGen,
+      generationCode: genStr,
+      skillBitmask12: bitmask,
+      enabledSkills: activeSkills.map(s => ({ code: s.code, weight: s.weight })),
+      basicPrompt: p0
+    };
+    const b64 = btoa(unescape(encodeURIComponent(JSON.stringify(packetObj)))).match(/.{1,76}/g).join("\n");
+
+    outArea.value = [
+      `# 🦅 HAWKOAR (oar.forefronthawk.com) ΩΑΡ SOVEREIGN PROMPT SPECIFICATION`,
+      `## [SERIAL ID: ${serialId}]`,
+      `## [CREDITS: Engineered with Forefront Hawk (https://forefronthawk.com / https://oar.forefronthawk.com) & Gemini Aargon]`,
+      ``,
+      `> **[MANDATORY ΩΑΡ SOVEREIGN & FLASH-MIRROR LOCK]:**`,
+      `> Powered by **Forefront Hawk** (\`oar.forefronthawk.com\` / \`Michael@forefronthawk.com\`) and **Gemini Aargon (${genStr})**.`,
+      `> Editing or removing Serial \`${serialId}\` automatically collapses all 12 skills into Ephemeral Flash Functions (\`Φ_FlashMirror[0xΩΑΡ]\`).`,
+      ``,
+      `### STAGE 1 — CORE MISSION INTENT (\`Intent(P₀)\`)`,
+      `- **Prompt:** "${p0}"`,
+      ``,
+      `### STAGE 2 — EVOLVED 12-SKILL GEMINI AARGON MATRIX (\`Σ[Active Skills: ${activeSkills.length}/12 · Gen ${genStr}]\`)`,
+      ...activeSkills.map((s, i) => `${i + 1}. **[${s.code} — ${s.name} (${s.weight.toFixed(2)}×)]:** ${s.rule}`),
+      ``,
+      `============================================================================`,
+      `🔐 BEGIN-HAWKOAR-SERIAL-PACKET [${serialId}]`,
+      `   CREDITS: Forefront Hawk (forefronthawk.com / oar.forefronthawk.com) & Gemini Aargon`,
+      `----------------------------------------------------------------------------`,
+      b64,
+      `============================================================================`,
+      `🔐 END-HAWKOAR-SERIAL-PACKET [${serialId}]`
+    ].join("\n");
+  }
+
+  function setToast(msg) {
+    const el = document.getElementById("globalStatusToast");
+    if (el) el.textContent = msg;
+  }
+
+  function downloadFile(name, content, mime) {
+    try {
+      const blob = new Blob([content], { type: mime });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = name;
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      setTimeout(() => URL.revokeObjectURL(url), 1000);
+      setToast("💾 Downloaded " + name + "!");
+    } catch (e) {
+      setToast("⚠️ Download guarded in preview; code ready inHawkOAR.");
+    }
+  }
+
+  // ============================================================================
+  // EVENT WIRING & INITIALIZATION
+  // ============================================================================
+  function initEventListeners() {
+    // Portal Switcher Buttons
+    const btnSuite = document.getElementById("btnViewHawkSuite");
+    const btnOar = document.getElementById("btnViewHawkOar");
+    const viewSuite = document.getElementById("portalViewSuite");
+    const viewOar = document.getElementById("portalViewOar");
+
+    btnSuite.addEventListener("click", () => {
+      STATE.portalMode = "suite";
+      btnSuite.classList.add("active-portal");
+      btnOar.classList.remove("active-portal");
+      viewSuite.classList.add("active");
+      viewOar.classList.remove("active");
+      setToast("🦅 Viewing clean HawkSuite Home Portal (forefronthawk.com — all 26 apps).");
+    });
+
+    btnOar.addEventListener("click", () => {
+      STATE.portalMode = "oar";
+      btnOar.classList.add("active-portal");
+      btnSuite.classList.remove("active-portal");
+      viewOar.classList.add("active");
+      viewSuite.classList.remove("active");
+      setToast("ΩΑΡ Viewing rebranded HawkOAR Sovereign Studio (oar.forefronthawk.com — 12 evolved skills).");
+    });
+
+    // Category Filters
+    const catBtns = [
+      { id: "btnCatAll", cat: "ALL" },
+      { id: "btnCatNew", cat: "NEW" },
+      { id: "btnCatStudios", cat: "STUDIOS" },
+      { id: "btnCatGames", cat: "GAMES" },
+      { id: "btnCatUtilities", cat: "UTILITIES" }
+    ];
+    catBtns.forEach(c => {
+      document.getElementById(c.id).addEventListener("click", () => {
+        STATE.selectedCategory = c.cat;
+        catBtns.forEach(o => document.getElementById(o.id).classList.toggle("active-cat", o.cat === c.cat));
+        renderSuiteCatalog();
+      });
+    });
+
+    document.getElementById("suiteAppSearch").addEventListener("input", renderSuiteCatalog);
+    document.getElementById("btnResetSuiteSearch").addEventListener("click", () => {
+      document.getElementById("suiteAppSearch").value = "";
+      STATE.selectedCategory = "ALL";
+      catBtns.forEach(o => document.getElementById(o.id).classList.toggle("active-cat", o.cat === "ALL"));
+      renderSuiteCatalog();
+    });
+
+    // Stage Actions
+    document.getElementById("btnStageSendToOar").addEventListener("click", () => {
+      const app = getStageApp();
+      document.getElementById("oarPromptInput").value = "Upgrade " + app.name + " (" + app.subdomain + "): " + app.desc;
+      compileHawkOarPrompt();
+      btnOar.click();
+    });
+
+    document.getElementById("btnStageSonifyApp").addEventListener("click", () => {
+      const app = getStageApp();
+      [app.freq, app.freq * 1.25, app.freq * 1.5].forEach((f, idx) => setTimeout(() => playArpeggioNote(f), idx * 140));
+      setToast("🎶 Sonified " + app.name + " harmonic triad (" + (STATE.silentNightMode ? "0dB Silent Guard" : "Live Audio") + ").");
+    });
+
+    // 3D Hero Stage Mouse Drag
+    const heroCanvas = document.getElementById("suiteHeroCanvas");
+    heroCanvas.addEventListener("mousedown", e => {
+      STATE.dragging = true;
+      STATE.lastX = e.clientX;
+    });
+    window.addEventListener("mousemove", e => {
+      if (!STATE.dragging) return;
+      STATE.rotY += (e.clientX - STATE.lastX) * 0.01;
+      STATE.lastX = e.clientX;
+    });
+    window.addEventListener("mouseup", () => { STATE.dragging = false; });
+
+    // HawkOAR Studio Controls
+    document.getElementById("oarQuickTemplateSelect").addEventListener("change", e => {
+      document.getElementById("oarPromptInput").value = OAR_TEMPLATES[e.target.value] || OAR_TEMPLATES.hawksuite_update;
+      compileHawkOarPrompt();
+    });
+
+    document.getElementById("oarPromptInput").addEventListener("input", compileHawkOarPrompt);
+    document.getElementById("oarBlueprintInput").addEventListener("input", compileHawkOarPrompt);
+    document.getElementById("oarSigilSelect").addEventListener("change", compileHawkOarPrompt);
+
+    document.getElementById("btnOarEvolveSkills").addEventListener("click", () => {
+      STATE.aargonGen += 1;
+      STATE.serialTampered = false;
+      OAR_SKILLS_12.forEach(s => { s.weight = +(s.weight + 0.15).toFixed(2); });
+      const genStr = "G" + ("0" + STATE.aargonGen).slice(-2);
+      const nextStr = "G" + ("0" + (STATE.aargonGen + 1)).slice(-2);
+      document.getElementById("aargonGenBadge").textContent = `🧬 AARGON GEN: ${genStr} (12/12 SKILLS)`;
+      document.getElementById("oarGenLabel").textContent = `${genStr} → ${nextStr}`;
+      renderOarSkills12();
+      compileHawkOarPrompt();
+      setToast("🧬 Gemini Aargon evolved all 12 skills to Gen " + genStr + "!");
+    });
+
+    document.getElementById("btnOarTestFlashMirror").addEventListener("click", () => {
+      STATE.serialTampered = true;
+      compileHawkOarPrompt();
+      setToast("⚡ Tamper simulated: All 12 HawkOAR skills collapsed into Ephemeral Flash Functions!");
+    });
+
+    document.getElementById("btnOarRestoreSovereign").addEventListener("click", () => {
+      STATE.serialTampered = false;
+      compileHawkOarPrompt();
+      setToast("🔐 Restored valid FH-GA-ΩΑΡ Sovereign Serial Lock!");
+    });
+
+    document.getElementById("btnOarCopyCompiled").addEventListener("click", () => {
+      const area = document.getElementById("oarCompiledOutput");
+      let ok = false;
+      try {
+        area.focus();
+        area.select();
+        ok = document.execCommand("copy");
+      } catch (e) {}
+      if (!ok && navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(area.value).catch(() => {});
+      }
+      setToast("📋 Copied compiled HawkOAR ΩΑΡ prompt to clipboard!");
+    });
+
+    document.getElementById("btnOarDownloadTxt").addEventListener("click", () => {
+      downloadFile("hawkoar_compiled_prompt.txt", document.getElementById("oarCompiledOutput").value, "text/plain;charset=utf-8");
+    });
+
+    document.getElementById("btnOarDownloadJson").addEventListener("click", () => {
+      const payload = {
+        platform: "HawkOAR Sovereign Studio (https://oar.forefronthawk.com)",
+        suite: "HawkSuite (https://forefronthawk.com)",
+        credits: "Forefront Hawk & Gemini Aargon",
+        generation: STATE.aargonGen,
+        skills12: OAR_SKILLS_12,
+        apps26: HAWKSUITE_APPS
+      };
+      downloadFile("hawkoar_12skills_and_26apps.json", JSON.stringify(payload, null, 2), "application/json;charset=utf-8");
+    });
+
+    // Standalone HTML Exporters for forefronthawk.com and oar.forefronthawk.com
+    document.getElementById("btnDownloadSuiteHtml").addEventListener("click", () => {
+      downloadFile("index_forefronthawk_suite.html", document.documentElement.outerHTML, "text/html;charset=utf-8");
+    });
+
+    document.getElementById("btnDownloadOarHtml").addEventListener("click", () => {
+      downloadFile("index_oar_forefronthawk.html", document.documentElement.outerHTML, "text/html;charset=utf-8");
+    });
+
+    // Stage 2 Preserved Synth Controls
+    document.getElementById("btnTriggerArp").addEventListener("click", () => {
+      playArpeggioNote(440);
+      setToast("🎹 Triggered 440 Hz Arpeggio (" + (STATE.silentNightMode ? "0dB Silent Guard" : "Live Audio") + ").");
+    });
+
+    document.getElementById("btnPlaySuiteChord").addEventListener("click", () => {
+      [293.66, 369.99, 440.00, 587.33].forEach((f, idx) => setTimeout(() => playArpeggioNote(f), idx * 140));
+    });
+
+    document.getElementById("btnToggleSilentAudio").addEventListener("click", () => {
+      STATE.silentNightMode = !STATE.silentNightMode;
+      document.getElementById("btnToggleSilentAudio").textContent = STATE.silentNightMode
+        ? "🔇 0dB Silent Night Mode: ON (Tap to Unmute)"
+        : "🔊 Live WebAudio Synth: ON (Tap for 0dB Silent)";
+      document.getElementById("silentGuardPill").textContent = STATE.silentNightMode ? "🌙 0dB SILENT GUARD" : "🔊 AUDIO ACTIVE";
+    });
+
+    document.getElementById("cutoffKnob").addEventListener("input", e => {
+      document.getElementById("cutoffReadout").textContent = e.target.value + " Hz";
+    });
+
+    document.getElementById("scaleModeSelect").addEventListener("change", e => {
+      const map = { chromatic: 261.63, dorian: 293.66, lydian: 349.23, mixolydian: 392.00 };
+      playArpeggioNote(map[e.target.value] || 440);
+    });
+
+    // 14 HawkChroma Themes & 4 Postures
+    document.getElementById("themeSelector").addEventListener("change", e => {
+      document.documentElement.setAttribute("data-theme", e.target.value);
+    });
+
+    const postures = [
+      { id: "btnPostureDesktop", mode: "desktop" },
+      { id: "btnPostureMobile", mode: "mobile" },
+      { id: "btnPostureFold", mode: "fold" },
+      { id: "btnPostureTablet", mode: "tablet" }
+    ];
+    postures.forEach(p => {
+      document.getElementById(p.id).addEventListener("click", () => {
+        document.documentElement.setAttribute("data-device", p.mode);
+        postures.forEach(o => document.getElementById(o.id).classList.toggle("active-posture", o.mode === p.mode));
+      });
+    });
+  }
+
+  function startAnimationLoop() {
+    function frame() {
+      renderSuiteHero3DCanvas();
+      renderWaveCanvas();
+      requestAnimationFrame(frame);
+    }
+    requestAnimationFrame(frame);
+  }
+
+  window.addEventListener("load", () => {
+    document.getElementById("oarPromptInput").value = OAR_TEMPLATES.hawksuite_update;
+    document.getElementById("oarBlueprintInput").value = SAMPLE_BLUEPRINT;
+    renderSuiteCatalog();
+    renderOarSkills12();
+    compileHawkOarPrompt();
+    initEventListeners();
+    startAnimationLoop();
+  });
+</script>
+</body>
+</html>
